@@ -1,11 +1,13 @@
 "use client"
 
+import { useState } from "react"
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
+import { toast } from "sonner"
 import {
   Layers,
   Database,
@@ -19,6 +21,7 @@ import {
   Activity,
   Zap,
   TrendingUp,
+  Plus,
 } from "lucide-react"
 import {
   LineChart,
@@ -192,6 +195,14 @@ const getStatusBadge = (status: string) => {
 }
 
 export default function IntegrasiPage() {
+  const handleSyncAll = () => {
+    toast.success("Memulai sinkronisasi semua integrasi...")
+  }
+
+  const handleAddIntegration = () => {
+    toast.info("Fitur tambah integrasi akan segera tersedia")
+  }
+
   return (
     <DashboardLayout
       title="Integrasi Sumber Data"
@@ -433,12 +444,12 @@ export default function IntegrasiPage() {
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-xl font-semibold text-foreground">Daftar Integrasi</h2>
         <div className="flex gap-2">
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2" onClick={handleSyncAll}>
             <RefreshCw className="h-4 w-4" />
             Sync All
           </Button>
-          <Button className="gap-2">
-            <Layers className="h-4 w-4" />
+          <Button className="gap-2" onClick={handleAddIntegration}>
+            <Plus className="h-4 w-4" />
             Tambah Integrasi
           </Button>
         </div>

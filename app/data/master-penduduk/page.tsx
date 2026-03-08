@@ -1,11 +1,14 @@
 "use client"
 
+import { useState } from "react"
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
 import { DataTable } from "@/components/dashboard/data-table"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { TambahPendudukDialog, ImportDialog, ExportDialog, FilterDialog } from "@/components/ui/crud-dialogs"
+import { toast } from "sonner"
 import {
   Users,
   UserCheck,
@@ -17,6 +20,7 @@ import {
   TrendingDown,
   Download,
   GraduationCap,
+  Filter,
 } from "lucide-react"
 import {
   PieChart,
@@ -107,6 +111,11 @@ const columns = [
 ]
 
 export default function MasterPendudukPage() {
+  const [tambahOpen, setTambahOpen] = useState(false)
+  const [importOpen, setImportOpen] = useState(false)
+  const [exportOpen, setExportOpen] = useState(false)
+  const [filterOpen, setFilterOpen] = useState(false)
+
   return (
     <DashboardLayout
       title="Master Data Penduduk"
@@ -285,15 +294,19 @@ export default function MasterPendudukPage() {
           Daftar Penduduk (Menampilkan {populationData.length} dari {totalPopulation.toLocaleString("id-ID")})
         </h2>
         <div className="flex gap-2">
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2" onClick={() => setFilterOpen(true)}>
+            <Filter className="h-4 w-4" />
+            Filter
+          </Button>
+          <Button variant="outline" className="gap-2" onClick={() => setExportOpen(true)}>
             <Download className="h-4 w-4" />
             Export
           </Button>
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2" onClick={() => setImportOpen(true)}>
             <Upload className="h-4 w-4" />
             Import Data
           </Button>
-          <Button className="gap-2">
+          <Button className="gap-2" onClick={() => setTambahOpen(true)}>
             <Plus className="h-4 w-4" />
             Tambah Penduduk
           </Button>
@@ -305,10 +318,16 @@ export default function MasterPendudukPage() {
         data={populationData}
         columns={columns}
         searchPlaceholder="Cari nama, NIK, atau desa..."
-        onView={(item) => console.log("View", item)}
-        onEdit={(item) => console.log("Edit", item)}
-        onDelete={(item) => console.log("Delete", item)}
+        onView={(item) => toast.info(`Melihat detail ${item.nama}`)}
+        onEdit={(item) => toast.info(`Edit data ${item.nama}`)}
+        onDelete={(item) => toast.success(`${item.nama} telah dihapus`)}
       />
+
+      {/* Dialogs */}
+      <TambahPendudukDialog open={tambahOpen} onOpenChange={setTambahOpen} />
+      <ImportDialog open={importOpen} onOpenChange={setImportOpen} title="Data Penduduk" />
+      <ExportDialog open={exportOpen} onOpenChange={setExportOpen} title="Data Penduduk" />
+      <FilterDialog open={filterOpen} onOpenChange={setFilterOpen} />
     </DashboardLayout>
   )
 }

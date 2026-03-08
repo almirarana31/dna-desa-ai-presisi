@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
@@ -7,6 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DetailDialog } from "@/components/ui/crud-dialogs"
+import { toast } from "sonner"
 import {
   Calendar,
   Clock,
@@ -31,6 +34,18 @@ const totalExpectedRevenue = recommendations.reduce((sum, r) => sum + r.estimate
 const averageROI = recommendations.reduce((sum, r) => sum + r.roi, 0) / recommendations.length
 
 export default function PlanningEnginePage() {
+  const [detailOpen, setDetailOpen] = useState(false)
+  const [selectedPlan, setSelectedPlan] = useState<typeof recommendations[0] | null>(null)
+
+  const handleSetujui = (plan: typeof recommendations[0]) => {
+    toast.success(`Rencana "${plan.title}" telah disetujui`)
+  }
+
+  const handleViewDetail = (plan: typeof recommendations[0]) => {
+    setSelectedPlan(plan)
+    setDetailOpen(true)
+  }
+
   return (
     <DashboardLayout
       title="Planning Engine"
@@ -127,11 +142,11 @@ export default function PlanningEnginePage() {
                           </div>
 
                           <div className="mt-3 flex gap-2">
-                            <Button size="sm">
+                            <Button size="sm" onClick={() => handleSetujui(plan)}>
                               <CheckCircle2 className="mr-2 h-4 w-4" />
                               Setujui
                             </Button>
-                            <Button size="sm" variant="outline">
+                            <Button size="sm" variant="outline" onClick={() => handleViewDetail(plan)}>
                               Detail
                             </Button>
                           </div>
@@ -182,7 +197,7 @@ export default function PlanningEnginePage() {
                           </div>
 
                           <div className="mt-3 flex gap-2">
-                            <Button size="sm" variant="outline">Detail</Button>
+                            <Button size="sm" variant="outline" onClick={() => handleViewDetail(plan)}>Detail</Button>
                           </div>
                         </div>
                       </div>
@@ -231,7 +246,7 @@ export default function PlanningEnginePage() {
                           </div>
 
                           <div className="mt-3 flex gap-2">
-                            <Button size="sm" variant="outline">Detail</Button>
+                            <Button size="sm" variant="outline" onClick={() => handleViewDetail(plan)}>Detail</Button>
                           </div>
                         </div>
                       </div>
@@ -243,6 +258,55 @@ export default function PlanningEnginePage() {
           </Card>
         </TabsContent>
       </Tabs>
+
+      {/* Detail Dialog */}
+      <DetailDialog
+        open={detailOpen}
+        onOpenChange={setDetailOpen}
+        title={selectedPlan?.title || "Detail Rencana"}
+      >
+        {selectedPlan && (
+          <div className="space-y-4">
+            <div>
+              <h4 className="font-medium text-foreground">Desa</h4>
+              <p className="text-muted-foreground">{selectedPlan.villageName}</p>
+            </div>
+            <div>
+              <h4 className="font-medium text-foreground">Deskripsi</h4>
+              <p className="text-muted-foreground">{selectedPlan.description}</p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-medium text-foreground">Investasi</h4>
+                <p className="text-xl font-bold text-primary">Rp {selectedPlan.estimatedCost} juta</p>
+              </div>
+              <div>
+                <h4 className="font-medium text-foreground">Proyeksi Revenue</h4>
+                <p className="text-xl font-bold text-success">Rp {selectedPlan.estimatedRevenue} juta</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-medium text-foreground">ROI</h4>
+                <p className="text-xl font-bold text-info">{selectedPlan.roi}%</p>
+              </div>
+              <div>
+                <h4 className="font-medium text-foreground">Jangka Waktu</h4>
+                <Badge variant="outline" className="capitalize">
+                  {selectedPlan.timeframe === "pendek" ? "0-12 Bulan" : 
+                   selectedPlan.timeframe === "menengah" ? "12-36 Bulan" : "36+ Bulan"}
+                </Badge>
+              </div>
+            </div>
+            <div className="pt-4 flex gap-2">
+              <Button className="flex-1" onClick={() => { handleSetujui(selectedPlan); setDetailOpen(false); }}>
+                <CheckCircle2 className="mr-2 h-4 w-4" />
+                Setujui Rencana
+              </Button>
+            </div>
+          </div>
+        )}
+      </DetailDialog>
     </DashboardLayout>
   )
 }

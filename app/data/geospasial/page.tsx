@@ -1,11 +1,13 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { toast } from "sonner"
 import {
   Map,
   Layers,
@@ -21,6 +23,12 @@ import {
   Navigation,
 } from "lucide-react"
 import { villages } from "@/lib/mock-data"
+
+// Dynamically import the map to avoid SSR issues
+const InteractiveMap = dynamic(
+  () => import("@/components/ui/interactive-map").then(mod => mod.InteractiveMap),
+  { ssr: false, loading: () => <div className="h-[500px] w-full animate-pulse rounded-lg bg-secondary flex items-center justify-center"><p className="text-muted-foreground">Memuat peta...</p></div> }
+)
 
 const layerData = [
   {
@@ -158,60 +166,15 @@ export default function GeospasialPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="relative h-[500px] w-full overflow-hidden rounded-lg bg-gradient-to-br from-secondary via-secondary/80 to-secondary/60">
-            {/* Simulated Map with Village Markers */}
-            <div className="absolute inset-0">
-              {/* Grid Background */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="h-full w-full" style={{
-                  backgroundImage: 'linear-gradient(var(--color-border) 1px, transparent 1px), linear-gradient(90deg, var(--color-border) 1px, transparent 1px)',
-                  backgroundSize: '50px 50px'
-                }} />
-              </div>
-
-              {/* Village Markers */}
-              {villages.slice(0, 30).map((village, index) => {
-                const x = 10 + (index % 6) * 15 + Math.random() * 5
-                const y = 15 + Math.floor(index / 6) * 18 + Math.random() * 5
-                const color = village.score > 85 ? 'text-success' : village.score > 75 ? 'text-warning' : 'text-destructive'
-                
-                return (
-                  <div
-                    key={village.id}
-                    className="absolute group cursor-pointer"
-                    style={{ left: `${x}%`, top: `${y}%` }}
-                  >
-                    <MapPin className={`h-6 w-6 ${color} drop-shadow-lg transition-transform hover:scale-125`} />
-                    <div className="absolute left-1/2 top-full mt-2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                      <div className="whitespace-nowrap rounded-lg bg-card border border-border px-3 py-2 shadow-lg">
-                        <p className="text-sm font-semibold text-foreground">{village.name}</p>
-                        <p className="text-xs text-muted-foreground">{village.province}</p>
-                        <div className="mt-1 flex items-center gap-2">
-                          <Badge variant="secondary" className="text-[10px]">{village.type}</Badge>
-                          <span className={`text-xs font-bold ${color}`}>Score: {village.score}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-
-              {/* Center Info */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="text-center">
-                  <Map className="mx-auto mb-4 h-16 w-16 text-muted-foreground/30" />
-                  <p className="text-lg font-medium text-card-foreground/50">
-                    Peta Interaktif Indonesia
-                  </p>
-                  <p className="text-sm text-muted-foreground/50">
-                    Hover pada marker untuk melihat detail desa
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="relative">
+            <InteractiveMap
+              villages={villages}
+              height="500px"
+              onViewVillage={(village) => toast.info(`Melihat detail ${village.name}`)}
+            />
 
             {/* Map Controls Overlay */}
-            <div className="absolute left-4 top-4 space-y-2">
+            <div className="absolute left-4 top-4 z-10 space-y-2">
               <Card className="border-border bg-card/95 backdrop-blur">
                 <CardContent className="p-3">
                   <p className="mb-2 text-xs font-medium text-muted-foreground">LAYER AKTIF</p>
@@ -238,21 +201,21 @@ export default function GeospasialPage() {
             </div>
 
             {/* Legend */}
-            <div className="absolute bottom-4 right-4">
+            <div className="absolute bottom-4 right-4 z-10">
               <Card className="border-border bg-card/95 backdrop-blur">
                 <CardContent className="p-3">
                   <p className="mb-2 text-xs font-medium text-muted-foreground">LEGENDA DNA SCORE</p>
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-success" />
+                      <div className="h-4 w-4 rounded-full bg-success" />
                       <span className="text-xs text-card-foreground">Tinggi (85+)</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-warning" />
+                      <div className="h-4 w-4 rounded-full bg-warning" />
                       <span className="text-xs text-card-foreground">Sedang (75-85)</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-destructive" />
+                      <div className="h-4 w-4 rounded-full bg-destructive" />
                       <span className="text-xs text-card-foreground">Rendah (&lt;75)</span>
                     </div>
                   </div>

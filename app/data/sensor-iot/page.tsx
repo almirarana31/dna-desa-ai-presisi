@@ -1,10 +1,13 @@
 "use client"
 
+import { useState } from "react"
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { TambahSensorDialog } from "@/components/ui/crud-dialogs"
+import { toast } from "sonner"
 import {
   Wifi,
   Thermometer,
@@ -71,6 +74,8 @@ const avgHumidity = chartData.reduce((sum, d) => sum + d.kelembaban, 0) / chartD
 const totalRainfall = chartData.reduce((sum, d) => sum + d.curahHujan, 0)
 
 export default function SensorIoTPage() {
+  const [tambahOpen, setTambahOpen] = useState(false)
+
   return (
     <DashboardLayout
       title="Data Sensor IoT"
@@ -281,7 +286,7 @@ export default function SensorIoTPage() {
       {/* Sensor List */}
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-xl font-semibold text-foreground">Daftar Sensor (Menampilkan 12 dari {totalSensors})</h2>
-        <Button className="gap-2">
+        <Button className="gap-2" onClick={() => setTambahOpen(true)}>
           <Wifi className="h-4 w-4" />
           Tambah Sensor
         </Button>
@@ -361,6 +366,9 @@ export default function SensorIoTPage() {
           </Card>
         ))}
       </div>
+
+      {/* Dialogs */}
+      <TambahSensorDialog open={tambahOpen} onOpenChange={setTambahOpen} />
     </DashboardLayout>
   )
 }

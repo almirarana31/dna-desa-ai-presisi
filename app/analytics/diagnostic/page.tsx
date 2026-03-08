@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
@@ -7,6 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DetailDialog } from "@/components/ui/crud-dialogs"
+import { toast } from "sonner"
 import {
   Activity,
   AlertTriangle,
@@ -80,6 +83,22 @@ const statusDistribution = [
 ]
 
 export default function DiagnosticEnginePage() {
+  const [detailOpen, setDetailOpen] = useState(false)
+  const [selectedIssue, setSelectedIssue] = useState<typeof diagnosticIssues[0] | null>(null)
+
+  const handleDetailAnalisis = (issue: typeof diagnosticIssues[0]) => {
+    setSelectedIssue(issue)
+    setDetailOpen(true)
+  }
+
+  const handleBuatRencanaAksi = (issue: typeof diagnosticIssues[0]) => {
+    toast.success(`Membuat rencana aksi untuk "${issue.title}"`)
+  }
+
+  const handleTanganiSegera = (issue: typeof diagnosticIssues[0]) => {
+    toast.info(`Memulai penanganan segera untuk "${issue.title}"`)
+  }
+
   return (
     <DashboardLayout
       title="Diagnostic Engine"
@@ -358,11 +377,11 @@ export default function DiagnosticEnginePage() {
                     </div>
 
                     <div className="mt-4 flex gap-2">
-                      <Button size="sm" variant="default">
+                      <Button size="sm" variant="default" onClick={() => handleDetailAnalisis(issue)}>
                         <FileSearch className="mr-2 h-4 w-4" />
                         Detail Analisis
                       </Button>
-                      <Button size="sm" variant="outline">
+                      <Button size="sm" variant="outline" onClick={() => handleBuatRencanaAksi(issue)}>
                         <Target className="mr-2 h-4 w-4" />
                         Buat Rencana Aksi
                       </Button>
@@ -385,7 +404,7 @@ export default function DiagnosticEnginePage() {
                       <h3 className="font-semibold text-card-foreground">{issue.title}</h3>
                       <p className="text-sm text-muted-foreground">{issue.villageName}</p>
                     </div>
-                    <Button size="sm" variant="destructive">
+                    <Button size="sm" variant="destructive" onClick={() => handleTanganiSegera(issue)}>
                       Tangani Segera
                     </Button>
                   </div>
@@ -406,7 +425,7 @@ export default function DiagnosticEnginePage() {
                       <h3 className="font-semibold text-card-foreground">{issue.title}</h3>
                       <p className="text-sm text-muted-foreground">{issue.villageName}</p>
                     </div>
-                    <Button size="sm" variant="outline">
+                    <Button size="sm" variant="outline" onClick={() => handleDetailAnalisis(issue)}>
                       Lihat Detail
                     </Button>
                   </div>
@@ -427,7 +446,7 @@ export default function DiagnosticEnginePage() {
                       <h3 className="font-semibold text-card-foreground">{issue.title}</h3>
                       <p className="text-sm text-muted-foreground">{issue.villageName}</p>
                     </div>
-                    <Button size="sm">Mulai Penanganan</Button>
+                    <Button size="sm" onClick={() => handleTanganiSegera(issue)}>Mulai Penanganan</Button>
                   </div>
                 </CardContent>
               </Card>
@@ -435,6 +454,93 @@ export default function DiagnosticEnginePage() {
           </div>
         </TabsContent>
       </Tabs>
+
+      {/* Detail Dialog */}
+      <DetailDialog
+        open={detailOpen}
+        onOpenChange={setDetailOpen}
+        title={selectedIssue?.title || "Detail Masalah"}
+      >
+        {selectedIssue && (
+          <div className="space-y-4">
+            <div className="flex gap-2">
+              <Badge
+                variant="outline"
+                className={
+                  selectedIssue.severity === "critical"
+                    ? "border-destructive text-destructive"
+                    : selectedIssue.severity === "high"
+                      ? "border-warning text-warning"
+                      : "border-info text-info"
+                }
+              >
+                {selectedIssue.severity.toUpperCase()}
+              </Badge>
+              <Badge variant="outline" className="capitalize">{selectedIssue.category}</Badge>
+              <Badge
+                variant="outline"
+                className={
+                  selectedIssue.status === "resolved"
+                    ? "border-success text-success"
+                    : selectedIssue.status === "in_progress"
+                      ? "border-warning text-warning"
+                      : "border-destructive text-destructive"
+                }
+              >
+                {selectedIssue.status === "resolved" ? "Selesai" : 
+                 selectedIssue.status === "in_progress" ? "Proses" : "Belum Ditangani"}
+              </Badge>
+            </div>
+            <div>
+              <h4 className="font-medium text-foreground">Desa</h4>
+              <p className="text-muted-foreground">{selectedIssue.villageName}</p>
+            </div>
+            <div>
+              <h4 className="font-medium text-foreground">Deskripsi</h4>
+              <p className="text-muted-foreground">{selectedIssue.description}</p>
+            </div>
+            <div>
+              <h4 className="font-medium text-foreground">Dampak</h4>
+              <p className="text-muted-foreground">{selectedIssue.impact}</p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-medium text-foreground">Penduduk Terdampak</h4>
+                <p className="text-xl font-bold text-primary">{selectedIssue.affectedPopulation.toLocaleString("id-ID")} jiwa</p>
+              </div>
+              <div>
+                <h4 className="font-medium text-foreground">Estimasi Kerugian</h4>
+                <p className="text-xl font-bold text-destructive">Rp {selectedIssue.estimatedLoss.toLocaleString("id-ID")} juta/tahun</p>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-medium text-foreground mb-2">Akar Penyebab</h4>
+              <div className="flex flex-wrap gap-2">
+                {selectedIssue.rootCause.map((cause, index) => (
+                  <Badge key={index} variant="secondary">{cause}</Badge>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h4 className="font-medium text-foreground mb-2">Rekomendasi</h4>
+              <ul className="space-y-2">
+                {selectedIssue.recommendations.map((rec, index) => (
+                  <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-success" />
+                    <span>{rec}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="pt-4 flex gap-2">
+              <Button className="flex-1" onClick={() => { handleBuatRencanaAksi(selectedIssue); setDetailOpen(false); }}>
+                <Target className="mr-2 h-4 w-4" />
+                Buat Rencana Aksi
+              </Button>
+            </div>
+          </div>
+        )}
+      </DetailDialog>
     </DashboardLayout>
   )
 }

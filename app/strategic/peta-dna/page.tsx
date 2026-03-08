@@ -1,11 +1,13 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { toast } from "sonner"
 import {
   Map,
   Layers,
@@ -19,6 +21,13 @@ import {
   TrendingUp,
   Building2,
 } from "lucide-react"
+import { villages } from "@/lib/mock-data"
+
+// Dynamically import the map to avoid SSR issues
+const InteractiveMap = dynamic(
+  () => import("@/components/ui/interactive-map").then(mod => mod.InteractiveMap),
+  { ssr: false, loading: () => <div className="h-[500px] w-full animate-pulse rounded-lg bg-secondary flex items-center justify-center"><p className="text-muted-foreground">Memuat peta...</p></div> }
+)
 
 const provinsiData = [
   { nama: "Jawa Barat", desa: 5962, score: 78, tipe: "Pertanian" },
@@ -199,56 +208,12 @@ export default function PetaDNAPage() {
 
             {/* Map Display */}
             <div className="flex-1">
-              <div className="relative h-[500px] w-full overflow-hidden rounded-lg bg-secondary">
-                {/* Map Placeholder */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <Map className="mx-auto mb-4 h-20 w-20 text-muted-foreground" />
-                    <p className="text-lg font-medium text-card-foreground">
-                      Peta DNA Desa Indonesia
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      83,721 desa terpetakan di 38 provinsi
-                    </p>
-                    <p className="mt-2 text-xs text-muted-foreground">
-                      Klik pada area untuk melihat detail desa
-                    </p>
-                  </div>
-                </div>
-
-                {/* Mini Info Card */}
-                <div className="absolute right-4 top-4">
-                  <Card className="w-64 border-border bg-card/95 backdrop-blur">
-                    <CardContent className="p-4">
-                      <p className="mb-2 text-xs font-medium text-muted-foreground">
-                        DESA TERPILIH
-                      </p>
-                      <h4 className="font-semibold text-card-foreground">Desa Sukamaju</h4>
-                      <p className="text-sm text-muted-foreground">Kec. Cibatu, Kab. Garut</p>
-                      <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
-                        <div>
-                          <p className="text-muted-foreground">Skor DNA</p>
-                          <p className="font-semibold text-success">85</p>
-                        </div>
-                        <div>
-                          <p className="text-muted-foreground">Tipe</p>
-                          <p className="font-semibold text-card-foreground">Pertanian</p>
-                        </div>
-                        <div>
-                          <p className="text-muted-foreground">Populasi</p>
-                          <p className="font-semibold text-card-foreground">4,521</p>
-                        </div>
-                        <div>
-                          <p className="text-muted-foreground">Luas</p>
-                          <p className="font-semibold text-card-foreground">245 Ha</p>
-                        </div>
-                      </div>
-                      <Button className="mt-3 w-full" size="sm">
-                        Lihat Detail
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </div>
+              <div className="relative">
+                <InteractiveMap
+                  villages={villages}
+                  height="500px"
+                  onViewVillage={(village) => toast.info(`Melihat detail ${village.name}`)}
+                />
               </div>
             </div>
           </div>

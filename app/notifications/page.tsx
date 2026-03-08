@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Sidebar } from "@/components/dashboard/sidebar"
 import { Header } from "@/components/dashboard/header"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -7,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav"
+import { DeleteConfirmDialog } from "@/components/ui/crud-dialogs"
 import { toast } from "sonner"
 import { 
   Bell, 
@@ -27,7 +29,7 @@ interface Notification {
   isRead: boolean
 }
 
-const notifications: Notification[] = [
+const initialNotifications: Notification[] = [
   {
     id: "1",
     type: "alert",
@@ -79,18 +81,35 @@ const notifications: Notification[] = [
 ]
 
 export default function NotificationsPage() {
+  const [notifications, setNotifications] = useState<Notification[]>(initialNotifications)
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [deleteAllDialogOpen, setDeleteAllDialogOpen] = useState(false)
+  const [selectedNotification, setSelectedNotification] = useState<Notification | null>(null)
+
   const unreadCount = notifications.filter(n => !n.isRead).length
 
   const handleMarkAllRead = () => {
+    setNotifications(notifications.map(n => ({ ...n, isRead: true })))
     toast.success("Semua notifikasi ditandai sebagai dibaca")
   }
 
   const handleDeleteAll = () => {
+    setNotifications([])
+    setDeleteAllDialogOpen(false)
     toast.success("Semua notifikasi telah dihapus")
   }
 
-  const handleDeleteNotification = (title: string) => {
-    toast.success(`"${title}" telah dihapus`)
+  const handleDeleteNotification = (notification: Notification) => {
+    setSelectedNotification(notification)
+    setDeleteDialogOpen(true)
+  }
+
+  const confirmDelete = () => {
+    if (selectedNotification) {
+      setNotifications(notifications.filter(n => n.id !== selectedNotification.id))
+      toast.success(`"${selectedNotification.title}" telah dihapus`)
+      setSelectedNotification(null)
+    }
   }
 
   const getNotificationIcon = (type: string) => {
@@ -146,11 +165,11 @@ export default function NotificationsPage() {
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" onClick={handleMarkAllRead}>
                   <MailOpen className="mr-2 h-4 w-4" />
                   Tandai Semua Dibaca
                 </Button>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" onClick={() => setDeleteAllDialogOpen(true)}>
                   <Trash2 className="mr-2 h-4 w-4" />
                   Hapus Semua
                 </Button>
@@ -240,8 +259,8 @@ export default function NotificationsPage() {
                           </CardDescription>
                         </div>
                       </div>
-                      <Button variant="ghost" size="icon">
-                        <Trash2 className="h-4 w-4 text-muted-foreground" />
+                      <Button variant="ghost" size="icon" onClick={() => handleDeleteNotification(notification)}>
+                        <Trash2 className="h-4 w-4 text-muted-foreground hover:text-destructive" />
                       </Button>
                     </div>
                   </CardHeader>
@@ -253,6 +272,14 @@ export default function NotificationsPage() {
                   </CardContent>
                 </Card>
               ))}
+              {notifications.length === 0 && (
+                <Card className="bg-card">
+                  <CardContent className="py-12 text-center">
+                    <Bell className="mx-auto h-12 w-12 text-muted-foreground/50" />
+                    <p className="mt-4 text-muted-foreground">Tidak ada notifikasi</p>
+                  </CardContent>
+                </Card>
+              )}
             </TabsContent>
 
             {/* Unread Notifications */}
@@ -285,8 +312,8 @@ export default function NotificationsPage() {
                             </CardDescription>
                           </div>
                         </div>
-                        <Button variant="ghost" size="icon">
-                          <Trash2 className="h-4 w-4 text-muted-foreground" />
+                        <Button variant="ghost" size="icon" onClick={() => handleDeleteNotification(notification)}>
+                          <Trash2 className="h-4 w-4 text-muted-foreground hover:text-destructive" />
                         </Button>
                       </div>
                     </CardHeader>
@@ -298,6 +325,14 @@ export default function NotificationsPage() {
                     </CardContent>
                   </Card>
                 ))}
+              {notifications.filter(n => !n.isRead).length === 0 && (
+                <Card className="bg-card">
+                  <CardContent className="py-12 text-center">
+                    <CheckCircle2 className="mx-auto h-12 w-12 text-success/50" />
+                    <p className="mt-4 text-muted-foreground">Semua notifikasi sudah dibaca</p>
+                  </CardContent>
+                </Card>
+              )}
             </TabsContent>
 
             {/* Read Notifications */}
@@ -327,8 +362,8 @@ export default function NotificationsPage() {
                             </CardDescription>
                           </div>
                         </div>
-                        <Button variant="ghost" size="icon">
-                          <Trash2 className="h-4 w-4 text-muted-foreground" />
+                        <Button variant="ghost" size="icon" onClick={() => handleDeleteNotification(notification)}>
+                          <Trash2 className="h-4 w-4 text-muted-foreground hover:text-destructive" />
                         </Button>
                       </div>
                     </CardHeader>
@@ -340,6 +375,14 @@ export default function NotificationsPage() {
                     </CardContent>
                   </Card>
                 ))}
+              {notifications.filter(n => n.isRead).length === 0 && (
+                <Card className="bg-card">
+                  <CardContent className="py-12 text-center">
+                    <Bell className="mx-auto h-12 w-12 text-muted-foreground/50" />
+                    <p className="mt-4 text-muted-foreground">Tidak ada notifikasi yang sudah dibaca</p>
+                  </CardContent>
+                </Card>
+              )}
             </TabsContent>
           </Tabs>
         </main>
@@ -356,6 +399,20 @@ export default function NotificationsPage() {
           </div>
         </footer>
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      <DeleteConfirmDialog
+        open={deleteDialogOpen}
+        onOpenChange={setDeleteDialogOpen}
+        itemName={selectedNotification?.title || ""}
+        onConfirm={confirmDelete}
+      />
+      <DeleteConfirmDialog
+        open={deleteAllDialogOpen}
+        onOpenChange={setDeleteAllDialogOpen}
+        itemName="semua notifikasi"
+        onConfirm={handleDeleteAll}
+      />
     </div>
   )
 }

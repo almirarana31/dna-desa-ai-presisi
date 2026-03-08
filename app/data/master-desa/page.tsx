@@ -1,14 +1,17 @@
 "use client"
 
+import { useState } from "react"
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
 import { DataTable } from "@/components/dashboard/data-table"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { MapPin, Building2, Users, TrendingUp, Plus, Upload, Download, Database, CheckCircle2 } from "lucide-react"
+import { MapPin, Building2, Users, TrendingUp, Plus, Upload, Download, Database, CheckCircle2, Filter } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { villages, getVillageStats } from "@/lib/mock-data"
+import { TambahDesaDialog, ImportDialog, ExportDialog, FilterDialog } from "@/components/ui/crud-dialogs"
+import { toast } from "sonner"
 
 // Get real stats from mock data
 const stats = getVillageStats()
@@ -89,6 +92,11 @@ const columns = [
 ]
 
 export default function MasterDesaPage() {
+  const [tambahOpen, setTambahOpen] = useState(false)
+  const [importOpen, setImportOpen] = useState(false)
+  const [exportOpen, setExportOpen] = useState(false)
+  const [filterOpen, setFilterOpen] = useState(false)
+
   return (
     <DashboardLayout
       title="Master Data Desa"
@@ -292,15 +300,19 @@ export default function MasterDesaPage() {
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-xl font-semibold text-foreground">Daftar Desa (Menampilkan 20 dari {stats.total})</h2>
         <div className="flex gap-2">
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2" onClick={() => setFilterOpen(true)}>
+            <Filter className="h-4 w-4" />
+            Filter
+          </Button>
+          <Button variant="outline" className="gap-2" onClick={() => setExportOpen(true)}>
             <Download className="h-4 w-4" />
             Export
           </Button>
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2" onClick={() => setImportOpen(true)}>
             <Upload className="h-4 w-4" />
             Import Data
           </Button>
-          <Button className="gap-2">
+          <Button className="gap-2" onClick={() => setTambahOpen(true)}>
             <Plus className="h-4 w-4" />
             Tambah Desa
           </Button>
@@ -312,10 +324,16 @@ export default function MasterDesaPage() {
         data={villageData}
         columns={columns}
         searchPlaceholder="Cari nama desa, kode, atau wilayah..."
-        onView={(item) => console.log("View", item)}
-        onEdit={(item) => console.log("Edit", item)}
-        onDelete={(item) => console.log("Delete", item)}
+        onView={(item) => toast.info(`Melihat detail ${item.nama}`)}
+        onEdit={(item) => toast.info(`Edit data ${item.nama}`)}
+        onDelete={(item) => toast.success(`${item.nama} telah dihapus`)}
       />
+
+      {/* Dialogs */}
+      <TambahDesaDialog open={tambahOpen} onOpenChange={setTambahOpen} />
+      <ImportDialog open={importOpen} onOpenChange={setImportOpen} title="Data Desa" />
+      <ExportDialog open={exportOpen} onOpenChange={setExportOpen} title="Data Desa" />
+      <FilterDialog open={filterOpen} onOpenChange={setFilterOpen} />
     </DashboardLayout>
   )
 }
