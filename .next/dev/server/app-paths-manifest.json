@@ -1,10 +1,9 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/data/geospasial/page": "app/data/geospasial/page.js",
+  "/analytics/dna-desa/page": "app/analytics/dna-desa/page.js",
   "/data/integrasi/page": "app/data/integrasi/page.js",
+  "/data/master-desa/page": "app/data/master-desa/page.js",
   "/data/master-komoditas/page": "app/data/master-komoditas/page.js",
-  "/data/sensor-iot/page": "app/data/sensor-iot/page.js",
+  "/data/master-penduduk/page": "app/data/master-penduduk/page.js",
   "/notifications/page": "app/notifications/page.js",
-  "/page": "app/page.js",
-  "/strategic/laporan/page": "app/strategic/laporan/page.js"
+  "/page": "app/page.js"
 }
