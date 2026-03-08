@@ -1,0 +1,166 @@
+"use client"
+
+import { cn } from "@/lib/utils"
+import {
+  Database,
+  Users,
+  MapPin,
+  Wifi,
+  Image,
+  FileText,
+  RefreshCw,
+  CheckCircle,
+  AlertCircle,
+  Clock,
+} from "lucide-react"
+import { Progress } from "@/components/ui/progress"
+
+interface DataSource {
+  id: string
+  name: string
+  icon: React.ElementType
+  records: number
+  lastSync: string
+  status: "synced" | "syncing" | "error"
+  completeness: number
+}
+
+const dataSources: DataSource[] = [
+  {
+    id: "1",
+    name: "Data BPS",
+    icon: FileText,
+    records: 74520,
+    lastSync: "5 menit lalu",
+    status: "synced",
+    completeness: 98,
+  },
+  {
+    id: "2",
+    name: "Master Desa",
+    icon: MapPin,
+    records: 83721,
+    lastSync: "10 menit lalu",
+    status: "synced",
+    completeness: 100,
+  },
+  {
+    id: "3",
+    name: "Data Penduduk",
+    icon: Users,
+    records: 2500000,
+    lastSync: "Sedang sinkronisasi",
+    status: "syncing",
+    completeness: 75,
+  },
+  {
+    id: "4",
+    name: "Sensor IoT",
+    icon: Wifi,
+    records: 1245,
+    lastSync: "Real-time",
+    status: "synced",
+    completeness: 92,
+  },
+  {
+    id: "5",
+    name: "Data Geospasial",
+    icon: MapPin,
+    records: 45200,
+    lastSync: "1 jam lalu",
+    status: "synced",
+    completeness: 88,
+  },
+  {
+    id: "6",
+    name: "Data Visual/Drone",
+    icon: Image,
+    records: 12500,
+    lastSync: "Error koneksi",
+    status: "error",
+    completeness: 45,
+  },
+]
+
+const statusConfig = {
+  synced: { icon: CheckCircle, label: "Tersinkron", color: "text-success" },
+  syncing: { icon: RefreshCw, label: "Sinkronisasi", color: "text-info animate-spin" },
+  error: { icon: AlertCircle, label: "Error", color: "text-destructive" },
+}
+
+export function DataHubPanel() {
+  const totalRecords = dataSources.reduce((sum, source) => sum + source.records, 0)
+  const avgCompleteness = Math.round(
+    dataSources.reduce((sum, source) => sum + source.completeness, 0) / dataSources.length
+  )
+
+  return (
+    <div className="rounded-xl border border-border bg-card">
+      {/* Header */}
+      <div className="border-b border-border p-6">
+        <div className="flex items-center gap-3">
+          <div className="rounded-lg bg-primary/20 p-2">
+            <Database className="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-card-foreground">Village Data Hub</h3>
+            <p className="text-sm text-muted-foreground">Status integrasi sumber data</p>
+          </div>
+        </div>
+
+        {/* Summary Stats */}
+        <div className="mt-4 grid grid-cols-3 gap-4">
+          <div className="rounded-lg bg-secondary/50 p-3 text-center">
+            <p className="text-2xl font-bold text-card-foreground">
+              {(totalRecords / 1000000).toFixed(1)}M
+            </p>
+            <p className="text-xs text-muted-foreground">Total Records</p>
+          </div>
+          <div className="rounded-lg bg-secondary/50 p-3 text-center">
+            <p className="text-2xl font-bold text-primary">{avgCompleteness}%</p>
+            <p className="text-xs text-muted-foreground">Kelengkapan</p>
+          </div>
+          <div className="rounded-lg bg-secondary/50 p-3 text-center">
+            <p className="text-2xl font-bold text-success">5/6</p>
+            <p className="text-xs text-muted-foreground">Sumber Aktif</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Data Sources List */}
+      <div className="divide-y divide-border">
+        {dataSources.map((source) => {
+          const StatusIcon = statusConfig[source.status].icon
+
+          return (
+            <div key={source.id} className="flex items-center gap-4 p-4 hover:bg-secondary/30">
+              <div className="rounded-lg bg-secondary p-2">
+                <source.icon className="h-5 w-5 text-muted-foreground" />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <h4 className="font-medium text-card-foreground">{source.name}</h4>
+                  <div className={cn("flex items-center gap-1 text-xs", statusConfig[source.status].color)}>
+                    <StatusIcon className="h-3 w-3" />
+                    {statusConfig[source.status].label}
+                  </div>
+                </div>
+                <div className="mt-1 flex items-center gap-4 text-sm text-muted-foreground">
+                  <span>{source.records.toLocaleString("id-ID")} records</span>
+                  <span className="flex items-center gap-1">
+                    <Clock className="h-3 w-3" />
+                    {source.lastSync}
+                  </span>
+                </div>
+                <div className="mt-2 flex items-center gap-2">
+                  <Progress value={source.completeness} className="h-1.5 flex-1" />
+                  <span className="text-xs text-muted-foreground">{source.completeness}%</span>
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
