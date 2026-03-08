@@ -1,47 +1,55 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-/* DNA DESA Theme - Forest Green and Off-White (Light Mode Only) */
+/* DNA DESA Theme - Warm Beige & Forest Green (Agricultural Cooperative) */
 :root {
-  --background: oklch(0.98 0.005 145); /* Off-white background */
+  /* Main Colors */
+  --background: oklch(0.96 0.015 85); /* Warm beige/off-white */
   --foreground: oklch(0.25 0.03 145); /* Dark forest green text */
-  --card: oklch(0.99 0.002 145); /* Very light off-white for cards */
+  --card: oklch(0.98 0.01 85); /* Cream white for cards */
   --card-foreground: oklch(0.25 0.03 145);
-  --popover: oklch(0.99 0.002 145);
+  --popover: oklch(0.98 0.01 85);
   --popover-foreground: oklch(0.25 0.03 145);
-  --primary: oklch(0.47 0.14 145); /* Forest Green #228B22 */
-  --primary-foreground: oklch(0.98 0.005 145); /* Off-white text on forest green */
-  --secondary: oklch(0.95 0.01 145); /* Light off-white */
+  --primary: oklch(0.42 0.12 145); /* Deep Forest Green #1B5E20 */
+  --primary-foreground: oklch(0.96 0.015 85); /* Light beige text on primary */
+  --secondary: oklch(0.93 0.02 85); /* Light beige */
   --secondary-foreground: oklch(0.35 0.04 145); /* Medium forest green */
-  --muted: oklch(0.94 0.01 145);
-  --muted-foreground: oklch(0.5 0.05 145); /* Muted forest green */
-  --accent: oklch(0.55 0.13 145); /* Medium forest green accent */
-  --accent-foreground: oklch(0.98 0.005 145);
-  --destructive: oklch(0.55 0.2 25);
-  --destructive-foreground: oklch(0.98 0.005 145);
-  --border: oklch(0.9 0.01 145); /* Light border */
-  --input: oklch(0.96 0.008 145); /* Light off-white input */
-  --ring: oklch(0.47 0.14 145); /* Forest green focus ring */
-  --chart-1: oklch(0.47 0.14 145); /* Forest Green */
-  --chart-2: oklch(0.6 0.15 250); /* Blue */
-  --chart-3: oklch(0.65 0.18 35); /* Orange */
-  --chart-4: oklch(0.55 0.13 145); /* Medium Forest Green */
-  --chart-5: oklch(0.7 0.12 85);  /* Yellow-Green */
+  --muted: oklch(0.92 0.02 85); /* Muted beige backgrounds */
+  --muted-foreground: oklch(0.45 0.03 145); /* Medium forest green for muted text */
+  --accent: oklch(0.55 0.12 145); /* Medium forest green accent */
+  --accent-foreground: oklch(0.96 0.015 85);
+  --destructive: oklch(0.55 0.2 25); /* Red for delete/error */
+  --destructive-foreground: oklch(0.96 0.015 85);
+  --border: oklch(0.88 0.02 85); /* Warm beige borders */
+  --input: oklch(0.95 0.015 85); /* Light beige input backgrounds */
+  --ring: oklch(0.42 0.12 145); /* Forest green focus ring */
+  
+  /* Chart Colors */
+  --chart-1: oklch(0.42 0.12 145); /* Forest Green - Primary */
+  --chart-2: oklch(0.65 0.15 85); /* Warm Gold - Secondary */
+  --chart-3: oklch(0.55 0.12 145); /* Medium Green - Tertiary */
+  --chart-4: oklch(0.70 0.08 85); /* Sand/Tan - Fourth */
+  --chart-5: oklch(0.32 0.08 145); /* Dark Green - Fifth */
+  
   --radius: 0.625rem;
-  --sidebar: oklch(0.97 0.005 145); /* Off-white sidebar */
-  --sidebar-foreground: oklch(0.25 0.03 145); /* Dark text on sidebar */
-  --sidebar-primary: oklch(0.47 0.14 145); /* Forest green primary */
-  --sidebar-primary-foreground: oklch(0.98 0.005 145);
-  --sidebar-accent: oklch(0.94 0.01 145); /* Light off-white accent */
-  --sidebar-accent-foreground: oklch(0.25 0.03 145);
-  --sidebar-border: oklch(0.9 0.01 145); /* Light border */
-  --sidebar-ring: oklch(0.47 0.14 145);
-  --success: oklch(0.55 0.14 145); /* Forest green for success */
-  --success-foreground: oklch(0.98 0.005 145);
-  --warning: oklch(0.65 0.18 35); /* Orange for warnings */
-  --warning-foreground: oklch(0.98 0.005 145);
-  --info: oklch(0.6 0.15 250); /* Blue for info */
-  --info-foreground: oklch(0.98 0.005 145);
+  
+  /* Sidebar - Dark Forest Green */
+  --sidebar: oklch(0.28 0.06 145); /* Deep forest green background */
+  --sidebar-foreground: oklch(0.95 0.01 85); /* Light beige text */
+  --sidebar-primary: oklch(0.55 0.12 145); /* Medium green for active items */
+  --sidebar-primary-foreground: oklch(0.95 0.01 85);
+  --sidebar-accent: oklch(0.35 0.05 145); /* Slightly lighter green for hover */
+  --sidebar-accent-foreground: oklch(0.95 0.01 85);
+  --sidebar-border: oklch(0.38 0.05 145); /* Dark green dividers */
+  --sidebar-ring: oklch(0.55 0.12 145);
+  
+  /* Status Colors */
+  --success: oklch(0.50 0.14 145); /* Green for success */
+  --success-foreground: oklch(0.96 0.015 85);
+  --warning: oklch(0.70 0.15 70); /* Warm amber for warnings */
+  --warning-foreground: oklch(0.25 0.03 85);
+  --info: oklch(0.55 0.15 250); /* Blue for information */
+  --info-foreground: oklch(0.96 0.015 85);
 }
 
 @theme inline {
