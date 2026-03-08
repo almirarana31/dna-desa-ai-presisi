@@ -1,9 +1,0 @@
-{
-  "/analytics/dna-desa/page": "app/analytics/dna-desa/page.js",
-  "/data/integrasi/page": "app/data/integrasi/page.js",
-  "/data/master-desa/page": "app/data/master-desa/page.js",
-  "/data/master-komoditas/page": "app/data/master-komoditas/page.js",
-  "/data/master-penduduk/page": "app/data/master-penduduk/page.js",
-  "/notifications/page": "app/notifications/page.js",
-  "/page": "app/page.js"
-}
