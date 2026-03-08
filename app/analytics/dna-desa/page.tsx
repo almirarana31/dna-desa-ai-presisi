@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -7,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Progress } from "@/components/ui/progress"
+import { DetailDialog } from "@/components/ui/crud-dialogs"
 import {
   Brain,
   Dna,
@@ -141,6 +143,14 @@ const clusteringDimensions = [
 ]
 
 export default function DNADesaPage() {
+  const [detailOpen, setDetailOpen] = useState(false)
+  const [selectedVillageItem, setSelectedVillageItem] = useState<typeof topVillages[0] | null>(null)
+  
+  const handleViewVillage = (village: typeof topVillages[0]) => {
+    setSelectedVillageItem(village)
+    setDetailOpen(true)
+  }
+  
   return (
     <DashboardLayout
       title="DNA Desa Engine"
@@ -445,7 +455,7 @@ export default function DNADesaPage() {
                         </span>
                       </div>
                     </div>
-                    <Button variant="ghost" size="icon">
+                    <Button variant="ghost" size="icon" onClick={() => handleViewVillage(village)}>
                       <ChevronRight className="h-5 w-5" />
                     </Button>
                   </div>
@@ -469,6 +479,66 @@ export default function DNADesaPage() {
           </Card>
         </TabsContent>
       </Tabs>
+
+      {/* Village Detail Dialog */}
+      <DetailDialog
+        open={detailOpen}
+        onOpenChange={setDetailOpen}
+        title={selectedVillageItem?.nama || "Detail Desa"}
+      >
+        {selectedVillageItem && (
+          <div className="space-y-4">
+            <div className="flex gap-2">
+              <Badge variant="outline" className="capitalize">{selectedVillageItem.tipe}</Badge>
+              <Badge
+                variant="outline"
+                className={
+                  selectedVillageItem.score >= 85
+                    ? "border-success text-success"
+                    : selectedVillageItem.score >= 70
+                      ? "border-warning text-warning"
+                      : "border-destructive text-destructive"
+                }
+              >
+                Skor: {selectedVillageItem.score}/100
+              </Badge>
+            </div>
+            <div>
+              <h4 className="font-medium text-foreground">Lokasi</h4>
+              <p className="text-muted-foreground">{selectedVillageItem.kabupaten}</p>
+            </div>
+            <div>
+              <h4 className="font-medium text-foreground">Trend</h4>
+              <p className={
+                selectedVillageItem.trend === "up"
+                  ? "text-success"
+                  : selectedVillageItem.trend === "down"
+                    ? "text-destructive"
+                    : "text-muted-foreground"
+              }>
+                {selectedVillageItem.trend === "up" ? "📈 Naik" : selectedVillageItem.trend === "down" ? "📉 Turun" : "↔ Stabil"}
+              </p>
+            </div>
+            <div>
+              <h4 className="font-medium text-foreground mb-2">Kekuatan</h4>
+              <div className="flex flex-wrap gap-2">
+                {selectedVillageItem.strengths.map((strength, index) => (
+                  <Badge key={index} variant="secondary" className="bg-success/10 text-success">
+                    <CheckCircle2 className="mr-1 h-3 w-3" />
+                    {strength}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+            <div className="pt-4">
+              <Button className="w-full" onClick={() => setDetailOpen(false)}>
+                <Target className="mr-2 h-4 w-4" />
+                Lihat Profil Lengkap
+              </Button>
+            </div>
+          </div>
+        )}
+      </DetailDialog>
     </DashboardLayout>
   )
 }

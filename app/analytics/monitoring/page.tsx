@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -299,8 +300,10 @@ export default function MonitoringPage() {
           <Card className="lg:col-span-2 border-border bg-card">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="text-lg">Alert Aktif</CardTitle>
-              <Button variant="ghost" size="sm" className="text-primary gap-1">
-                Lihat Semua <ArrowRight className="h-4 w-4" />
+              <Button variant="ghost" size="sm" className="text-primary gap-1" asChild>
+                <Link href="/notifications">
+                  Lihat Semua <ArrowRight className="h-4 w-4" />
+                </Link>
               </Button>
             </CardHeader>
             <CardContent className="space-y-4">

@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 import {
   Lightbulb,
@@ -103,9 +104,11 @@ export function RecommendationPanel() {
             </p>
           </div>
         </div>
-        <Button variant="outline" size="sm">
-          Lihat Semua
-          <ChevronRight className="ml-1 h-4 w-4" />
+        <Button variant="outline" size="sm" asChild>
+          <Link href="/analytics/recommendation">
+            Lihat Semua
+            <ChevronRight className="ml-1 h-4 w-4" />
+          </Link>
         </Button>
       </div>
 
@@ -196,14 +199,22 @@ export function AlertsPanel() {
 
   return (
     <div className="rounded-xl border border-border bg-card p-6">
-      <div className="mb-4 flex items-center gap-3">
-        <div className="rounded-lg bg-warning/20 p-2">
-          <AlertTriangle className="h-5 w-5 text-warning" />
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="rounded-lg bg-warning/20 p-2">
+            <AlertTriangle className="h-5 w-5 text-warning" />
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-card-foreground">Alert Terkini</h3>
+            <p className="text-sm text-muted-foreground">Peringatan dan notifikasi penting</p>
+          </div>
         </div>
-        <div>
-          <h3 className="text-lg font-semibold text-card-foreground">Alert Terkini</h3>
-          <p className="text-sm text-muted-foreground">Peringatan dan notifikasi penting</p>
-        </div>
+        <Button variant="outline" size="sm" asChild>
+          <Link href="/notifications">
+            Lihat Semua
+            <ChevronRight className="ml-1 h-4 w-4" />
+          </Link>
+        </Button>
       </div>
       <div className="space-y-3">
         {alerts.map((alert) => {

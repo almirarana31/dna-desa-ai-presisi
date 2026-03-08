@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 import {
   Database,
@@ -12,6 +13,7 @@ import {
   CheckCircle,
   AlertCircle,
   Clock,
+  ChevronRight,
 } from "lucide-react"
 import { Progress } from "@/components/ui/progress"
 
@@ -23,6 +25,7 @@ interface DataSource {
   lastSync: string
   status: "synced" | "syncing" | "error"
   completeness: number
+  href?: string
 }
 
 const dataSources: DataSource[] = [
@@ -34,6 +37,7 @@ const dataSources: DataSource[] = [
     lastSync: "5 menit lalu",
     status: "synced",
     completeness: 98,
+    href: "/data/integrasi",
   },
   {
     id: "2",
@@ -43,6 +47,7 @@ const dataSources: DataSource[] = [
     lastSync: "10 menit lalu",
     status: "synced",
     completeness: 100,
+    href: "/data/master-desa",
   },
   {
     id: "3",
@@ -52,6 +57,7 @@ const dataSources: DataSource[] = [
     lastSync: "Sedang sinkronisasi",
     status: "syncing",
     completeness: 75,
+    href: "/data/master-penduduk",
   },
   {
     id: "4",
@@ -61,6 +67,7 @@ const dataSources: DataSource[] = [
     lastSync: "Real-time",
     status: "synced",
     completeness: 92,
+    href: "/data/sensor-iot",
   },
   {
     id: "5",
@@ -70,6 +77,7 @@ const dataSources: DataSource[] = [
     lastSync: "1 jam lalu",
     status: "synced",
     completeness: 88,
+    href: "/data/geospasial",
   },
   {
     id: "6",
@@ -131,15 +139,14 @@ export function DataHubPanel() {
       <div className="divide-y divide-border">
         {dataSources.map((source) => {
           const StatusIcon = statusConfig[source.status].icon
-
-          return (
-            <div key={source.id} className="flex items-center gap-4 p-4 hover:bg-secondary/30">
+          const content = (
+            <>
               <div className="rounded-lg bg-secondary p-2">
                 <source.icon className="h-5 w-5 text-muted-foreground" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-medium text-card-foreground">{source.name}</h4>
+                  <h4 className="font-medium text-card-foreground group-hover:text-primary">{source.name}</h4>
                   <div className={cn("flex items-center gap-1 text-xs", statusConfig[source.status].color)}>
                     <StatusIcon className="h-3 w-3" />
                     {statusConfig[source.status].label}
@@ -157,6 +164,17 @@ export function DataHubPanel() {
                   <span className="text-xs text-muted-foreground">{source.completeness}%</span>
                 </div>
               </div>
+              {source.href && <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary" />}
+            </>
+          )
+
+          return source.href ? (
+            <Link key={source.id} href={source.href} className="group flex items-center gap-4 p-4 hover:bg-secondary/30 transition-colors">
+              {content}
+            </Link>
+          ) : (
+            <div key={source.id} className="flex items-center gap-4 p-4 hover:bg-secondary/30">
+              {content}
             </div>
           )
         })}

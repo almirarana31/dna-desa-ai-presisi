@@ -28,11 +28,22 @@ const typeConfig = {
   logistik: { label: "Logistik", color: "bg-warning/20 text-warning border-warning/30" },
 }
 
-export function VillageDNACard({ village }: { village: VillageDNA }) {
+interface VillageDNACardProps {
+  village: VillageDNA
+  onClick?: (village: VillageDNA) => void
+}
+
+export function VillageDNACard({ village, onClick }: VillageDNACardProps) {
   const config = typeConfig[village.type]
 
   return (
-    <div className="group rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5">
+    <div 
+      className={cn(
+        "group rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5",
+        onClick && "cursor-pointer"
+      )}
+      onClick={() => onClick?.(village)}
+    >
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
