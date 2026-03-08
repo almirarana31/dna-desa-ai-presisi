@@ -20,13 +20,20 @@ import {
   Bell,
 } from "lucide-react"
 import { useState } from "react"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 interface NavItem {
   label: string
   icon: React.ElementType
   href?: string
   badge?: string
-  children?: { label: string; href: string }[]
+  tooltip?: string
+  children?: { label: string; href: string; tooltip?: string }[]
 }
 
 const navigation: { section: string; items: NavItem[] }[] = [
@@ -57,11 +64,36 @@ const navigation: { section: string; items: NavItem[] }[] = [
   {
     section: "Analytics Layer",
     items: [
-      { label: "DNA Desa Engine", icon: Brain, href: "/analytics/dna-desa" },
-      { label: "Diagnostic Engine", icon: Activity, href: "/analytics/diagnostic" },
-      { label: "Planning Engine", icon: Target, href: "/analytics/planning" },
-      { label: "Recommendation Engine", icon: Lightbulb, href: "/analytics/recommendation" },
-      { label: "Monitoring Engine", icon: BarChart3, href: "/analytics/monitoring" },
+      { 
+        label: "DNA Desa Engine", 
+        icon: Brain, 
+        href: "/analytics/dna-desa",
+        tooltip: "Klasifikasi dan profiling desa berdasarkan potensi, risiko, dan karakteristik unik"
+      },
+      { 
+        label: "Diagnostic Engine", 
+        icon: Activity, 
+        href: "/analytics/diagnostic",
+        tooltip: "Analisis mendalam untuk mengidentifikasi masalah dan peluang pembangunan desa"
+      },
+      { 
+        label: "Planning Engine", 
+        icon: Target, 
+        href: "/analytics/planning",
+        tooltip: "Perencanaan pembangunan presisi berbasis data dan AI"
+      },
+      { 
+        label: "Recommendation Engine", 
+        icon: Lightbulb, 
+        href: "/analytics/recommendation",
+        tooltip: "Rekomendasi program dan intervensi yang tepat sasaran untuk setiap desa"
+      },
+      { 
+        label: "Monitoring Engine", 
+        icon: BarChart3, 
+        href: "/analytics/monitoring",
+        tooltip: "Monitoring dan evaluasi real-time terhadap program pembangunan desa"
+      },
     ],
   },
   {
@@ -156,6 +188,38 @@ export function Sidebar() {
                         </ul>
                       )}
                     </div>
+                  ) : item.tooltip ? (
+                    <TooltipProvider delayDuration={200}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Link
+                            href={item.href || "#"}
+                            className={cn(
+                              "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
+                              isActive(item.href)
+                                ? "bg-sidebar-accent text-sidebar-primary"
+                                : "text-sidebar-foreground hover:bg-sidebar-accent"
+                            )}
+                          >
+                            <item.icon
+                              className={cn(
+                                "h-4 w-4",
+                                isActive(item.href) ? "text-sidebar-primary" : "text-muted-foreground"
+                              )}
+                            />
+                            {item.label}
+                            {item.badge && (
+                              <span className="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                                {item.badge}
+                              </span>
+                            )}
+                          </Link>
+                        </TooltipTrigger>
+                        <TooltipContent side="right" className="max-w-xs">
+                          <p className="text-sm">{item.tooltip}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   ) : (
                     <Link
                       href={item.href || "#"}

@@ -3,6 +3,7 @@
 import { Search, Bell, User, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import Link from "next/link"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -52,26 +53,50 @@ export function Header() {
               </span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-80">
-            <DropdownMenuLabel>Notifikasi</DropdownMenuLabel>
+          <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+            <DropdownMenuLabel className="text-foreground">Notifikasi</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="flex flex-col items-start gap-1 py-3">
-              <span className="font-medium">Alert: Risiko Gagal Panen</span>
-              <span className="text-xs text-muted-foreground">
-                Desa Sukamaju memiliki indikasi kekurangan air untuk tanaman padi
-              </span>
+            <DropdownMenuItem asChild>
+              <Link 
+                href="/notifications"
+                className="flex flex-col items-start gap-1 py-3 cursor-pointer hover:bg-secondary focus:bg-secondary"
+              >
+                <span className="font-medium text-foreground">Alert: Risiko Gagal Panen</span>
+                <span className="text-xs text-muted-foreground">
+                  Desa Sukamaju memiliki indikasi kekurangan air untuk tanaman padi
+                </span>
+              </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="flex flex-col items-start gap-1 py-3">
-              <span className="font-medium">Update Data Sensor</span>
-              <span className="text-xs text-muted-foreground">
-                12 sensor IoT baru terdeteksi di Kabupaten Bandung
-              </span>
+            <DropdownMenuItem asChild>
+              <Link 
+                href="/notifications"
+                className="flex flex-col items-start gap-1 py-3 cursor-pointer hover:bg-secondary focus:bg-secondary"
+              >
+                <span className="font-medium text-foreground">Update Data Sensor</span>
+                <span className="text-xs text-muted-foreground">
+                  12 sensor IoT baru terdeteksi di Kabupaten Bandung
+                </span>
+              </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="flex flex-col items-start gap-1 py-3">
-              <span className="font-medium">Rekomendasi Baru</span>
-              <span className="text-xs text-muted-foreground">
-                5 desa potensial untuk program hortikultura
-              </span>
+            <DropdownMenuItem asChild>
+              <Link 
+                href="/notifications"
+                className="flex flex-col items-start gap-1 py-3 cursor-pointer hover:bg-secondary focus:bg-secondary"
+              >
+                <span className="font-medium text-foreground">Rekomendasi Baru</span>
+                <span className="text-xs text-muted-foreground">
+                  5 desa potensial untuk program hortikultura
+                </span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link 
+                href="/notifications"
+                className="flex items-center justify-center py-2 text-sm font-medium text-primary hover:bg-secondary"
+              >
+                Lihat Semua Notifikasi
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

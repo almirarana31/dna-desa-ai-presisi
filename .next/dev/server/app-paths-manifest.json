@@ -1,0 +1,10 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/data/geospasial/page": "app/data/geospasial/page.js",
+  "/data/integrasi/page": "app/data/integrasi/page.js",
+  "/data/master-komoditas/page": "app/data/master-komoditas/page.js",
+  "/data/sensor-iot/page": "app/data/sensor-iot/page.js",
+  "/notifications/page": "app/notifications/page.js",
+  "/page": "app/page.js",
+  "/strategic/laporan/page": "app/strategic/laporan/page.js"
+}

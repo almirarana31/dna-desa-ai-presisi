@@ -13,6 +13,8 @@ import { RecommendationPanel, AlertsPanel } from "@/components/dashboard/recomme
 import { DataHubPanel } from "@/components/dashboard/data-hub-panel"
 import { AIAssistantPanel } from "@/components/dashboard/ai-assistant"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav"
+import { InfoTooltip } from "@/components/ui/info-tooltip"
 import {
   MapPin,
   Users,
@@ -35,9 +37,15 @@ export default function DashboardPage() {
         <Header />
 
         <main className="p-6">
+          {/* Breadcrumb Navigation */}
+          <BreadcrumbNav />
+
           {/* Page Title */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-foreground">Dashboard AI Desa</h1>
+            <div className="flex items-center gap-2">
+              <h1 className="text-3xl font-bold text-foreground">Dashboard AI Desa</h1>
+              <InfoTooltip content="Platform analitik terintegrasi untuk pemetaan DNA Desa, diagnostik potensi, perencanaan pembangunan presisi, dan monitoring evaluasi berbasis AI" />
+            </div>
             <p className="mt-1 text-muted-foreground">
               Platform analitik untuk pemetaan DNA Desa, diagnostik potensi, dan perencanaan
               pembangunan presisi
