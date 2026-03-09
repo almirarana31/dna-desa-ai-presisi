@@ -44,7 +44,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         {/* Back to Landing */}
         <Link href="/landing">
@@ -125,7 +125,7 @@ export default function LoginPage() {
         </Card>
 
         {/* Demo Credentials */}
-        <Card className="border-2 border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/20">
+        <Card className="border-2 border-blue-200 bg-blue-50">
           <CardContent className="p-4">
             <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
               <Shield className="h-4 w-4 text-blue-600" />
@@ -139,7 +139,7 @@ export default function LoginPage() {
         </Card>
 
         {/* Security Notice */}
-        <Card className="border-2 border-slate-200 dark:border-slate-800">
+        <Card className="border-2 border-slate-200">
           <CardContent className="p-4">
             <div className="flex items-start gap-3">
               <Shield className="h-5 w-5 text-slate-400 mt-0.5" />
@@ -155,7 +155,7 @@ export default function LoginPage() {
         </Card>
 
         {/* Sister App Link */}
-        <Card className="border-2 border-slate-200 dark:border-slate-800">
+        <Card className="border-2 border-slate-200">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
