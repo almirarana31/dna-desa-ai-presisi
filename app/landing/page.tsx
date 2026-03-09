@@ -23,43 +23,43 @@ export default function LandingPage() {
   const features = [
     {
       icon: Brain,
-      title: 'AI-Powered Analytics',
-      description: 'Advanced machine learning models for village development insights',
+      title: 'Smart Analysis',
+      description: 'Get insights about village development using smart technology',
       color: 'text-purple-600',
       bg: 'bg-purple-100 dark:bg-purple-900/30',
     },
     {
       icon: Map,
-      title: 'Geospatial Mapping',
-      description: 'Interactive maps with demographic and economic overlays',
+      title: 'Interactive Maps',
+      description: 'View village data on easy-to-read maps with population and economy info',
       color: 'text-blue-600',
       bg: 'bg-blue-100 dark:bg-blue-900/30',
     },
     {
       icon: BarChart3,
-      title: 'Real-time Dashboards',
-      description: 'Live data visualization for quick decision-making',
+      title: 'Live Dashboards',
+      description: 'See up-to-date charts and graphs to make quick decisions',
       color: 'text-emerald-600',
       bg: 'bg-emerald-100 dark:bg-emerald-900/30',
     },
     {
       icon: Target,
-      title: 'Development Targeting',
-      description: 'Identify priority areas for government intervention',
+      title: 'Priority Planning',
+      description: 'Find which villages need help first and plan your programs',
       color: 'text-orange-600',
       bg: 'bg-orange-100 dark:bg-orange-900/30',
     },
     {
       icon: TrendingUp,
-      title: 'Predictive Models',
-      description: 'Forecast village growth and development trends',
+      title: 'Growth Forecasts',
+      description: 'Predict how villages will grow and develop in the future',
       color: 'text-pink-600',
       bg: 'bg-pink-100 dark:bg-pink-900/30',
     },
     {
       icon: Shield,
-      title: 'Secure & Compliant',
-      description: 'Government-grade security and data protection',
+      title: 'Safe & Secure',
+      description: 'Government-level security to protect all your data',
       color: 'text-cyan-600',
       bg: 'bg-cyan-100 dark:bg-cyan-900/30',
     },
@@ -89,8 +89,8 @@ export default function LandingPage() {
           </h1>
           
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Precision village development analytics for government officials. 
-            Make data-driven decisions with AI-powered insights.
+            Smart village development tools for government officials. 
+            Make better decisions with clear data and helpful insights.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -127,9 +127,9 @@ export default function LandingPage() {
       <div className="bg-white dark:bg-slate-900 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Comprehensive Village Intelligence</h2>
+            <h2 className="text-3xl font-bold mb-4">Complete Village Information</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Advanced analytics tools designed specifically for Indonesian village development programs
+              Easy-to-use tools made specifically for Indonesian village development programs
             </p>
           </div>
 
@@ -161,10 +161,10 @@ export default function LandingPage() {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold mb-4">For Regional Planning</h3>
               {[
-                'Identify underdeveloped villages requiring intervention',
-                'Track SDGs progress across multiple villages',
-                'Allocate budgets based on data-driven priorities',
-                'Monitor development program effectiveness',
+                'Find villages that need help and support',
+                'Track development goals across all your villages',
+                'Plan budgets based on real data and priorities',
+                'See how well your programs are working',
               ].map((benefit, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <div className="p-1 bg-purple-100 dark:bg-purple-900/30 rounded-full mt-0.5">
@@ -178,10 +178,10 @@ export default function LandingPage() {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold mb-4">For Village Heads</h3>
               {[
-                'Benchmark performance against neighboring villages',
-                'Access AI recommendations for development priorities',
-                'Generate reports for government submissions',
-                'Track community welfare improvements over time',
+                'Compare your village with nearby villages',
+                'Get smart suggestions for what to improve first',
+                'Create reports easily for government requirements',
+                'Track how your community is improving over time',
               ].map((benefit, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <div className="p-1 bg-pink-100 dark:bg-pink-900/30 rounded-full mt-0.5">
@@ -198,9 +198,9 @@ export default function LandingPage() {
       {/* CTA Section */}
       <div className="bg-gradient-to-r from-purple-600 to-pink-600 py-16">
         <div className="container mx-auto px-4 text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">Transform Village Development with AI</h2>
+          <h2 className="text-3xl font-bold mb-4">Improve Village Development with Smart Tools</h2>
           <p className="text-purple-50 mb-8 max-w-2xl mx-auto">
-            Join government agencies using DNA Desa AI for precision development planning
+            Join government agencies using DNA Desa AI to plan better village development
           </p>
           <Link href="/login">
             <Button size="lg" variant="secondary" className="px-8">
@@ -222,3 +222,15 @@ export default function LandingPage() {
     </div>
   )
 }
+
+   </div>
+  )
+}
+
+ )
+}
+
+   </div>
+  )
+}
+
