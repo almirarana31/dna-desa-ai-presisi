@@ -542,6 +542,3 @@ export default function DNADesaPage() {
     </DashboardLayout>
   )
 }
-ashboardLayout>
-  )
-}
