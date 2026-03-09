@@ -254,10 +254,3 @@ export default function DashboardPage() {
     </div>
   )
 }
-       </div>
-          </div>
-        </footer>
-      </div>
-    </div>
-  )
-}

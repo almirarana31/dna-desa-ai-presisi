@@ -221,36 +221,3 @@ export default function LandingPage() {
     </div>
   )
 }
-026 DNA Desa AI Presisi. Smart Analytics for Village Development.
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
-       </p>
-        </div>
-      </div>
-    </div>
-  )
-}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-    </div>
-  )
-}
- )
-}
-
-    </div>
-  )
-}
-}
-
-    </div>
-  )
-}
