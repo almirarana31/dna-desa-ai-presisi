@@ -190,9 +190,3 @@ export default function LoginPage() {
     </div>
   )
 }
-   </p>
-        </div>
-      </div>
-    </div>
-  )
-}

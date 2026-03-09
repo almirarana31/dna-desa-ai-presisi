@@ -221,9 +221,3 @@ export default function LandingPage() {
     </div>
   )
 }
-      </p>
-        </div>
-      </div>
-    </div>
-  )
-}
