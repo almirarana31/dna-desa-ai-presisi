@@ -252,7 +252,7 @@ export default function DNADesaPage() {
                   dataKey="type"
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 12 }}
+                  tick={{ fill: "#64748b", fontSize: 12 }}
                   width={80}
                 />
                 <Bar dataKey="count" radius={[0, 4, 4, 0]}>
@@ -540,5 +540,8 @@ export default function DNADesaPage() {
         )}
       </DetailDialog>
     </DashboardLayout>
+  )
+}
+ashboardLayout>
   )
 }
