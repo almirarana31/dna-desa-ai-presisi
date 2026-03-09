@@ -321,18 +321,18 @@ export default function MonitoringPage() {
                   }`}>
                     {alert.severity === "critical" ? <ShieldAlert className="h-5 w-5" /> : <AlertTriangle className="h-5 w-5" />}
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-semibold text-foreground">{alert.title} - <span className="text-primary">{alert.village}</span></h4>
-                      <span className="text-xs text-muted-foreground">{alert.timestamp}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1 gap-1">
+                      <h4 className="font-semibold text-foreground break-words">{alert.title} - <span className="text-primary">{alert.village}</span></h4>
+                      <span className="text-xs text-muted-foreground shrink-0">{alert.timestamp}</span>
                     </div>
                     <p className="text-sm text-muted-foreground mb-3">{alert.description}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <Badge variant="secondary" className="text-[10px] uppercase">{alert.type}</Badge>
                         <span className="text-xs font-medium text-success">Action: {alert.action}</span>
                       </div>
-                      <Button size="sm" className="h-7 text-xs bg-primary hover:bg-primary/90">Handle</Button>
+                      <Button size="sm" className="h-7 text-xs bg-primary hover:bg-primary/90 shrink-0">Handle</Button>
                     </div>
                   </div>
                 </div>
@@ -568,9 +568,9 @@ export default function MonitoringPage() {
           {programProgress.map((program) => (
             <Card key={program.id} className="border-border bg-card">
               <CardContent className="py-4">
-                <div className="flex items-center gap-6">
-                  <div className="flex-1">
-                    <div className="mb-1 flex items-center gap-2">
+                <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
+                  <div className="flex-1 min-w-0">
+                    <div className="mb-1 flex flex-wrap items-center gap-2">
                       <h3 className="font-semibold text-card-foreground">{program.program}</h3>
                       <Badge
                         variant="secondary"
@@ -588,7 +588,7 @@ export default function MonitoringPage() {
                     </p>
                   </div>
 
-                  <div className="w-64">
+                  <div className="w-full lg:w-64">
                     <div className="mb-1 flex items-center justify-between text-sm">
                       <span className="text-muted-foreground">Progress</span>
                       <span className="font-semibold text-card-foreground">{program.progress}%</span>
@@ -601,7 +601,7 @@ export default function MonitoringPage() {
                     />
                   </div>
 
-                  <Button variant="ghost" size="sm">
+                  <Button variant="ghost" size="sm" className="self-start lg:self-auto">
                     Detail
                   </Button>
                 </div>

@@ -394,72 +394,72 @@ export default function DNADesaPage() {
           {topVillages.map((village, index) => (
             <Card key={village.id} className="border-border bg-card">
               <CardContent className="py-4">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20 text-lg font-bold text-primary">
-                    {index + 1}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-card-foreground">{village.nama}</h3>
-                      <Badge
-                        variant="secondary"
-                        className={
-                          village.tipe === "Pertanian"
-                            ? "bg-success/20 text-success"
-                            : village.tipe === "Perikanan"
-                              ? "bg-info/20 text-info"
-                              : village.tipe === "Wisata"
-                                ? "bg-warning/20 text-warning"
-                                : "bg-chart-2/20 text-chart-2"
-                        }
-                      >
-                        {village.tipe}
-                      </Badge>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20 text-lg font-bold text-primary shrink-0">
+                      {index + 1}
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      Kabupaten {village.kabupaten}
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {village.strengths.map((strength) => (
-                      <Badge key={strength} variant="outline" className="border-border">
-                        {strength}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="text-right">
-                      <p className="text-2xl font-bold text-card-foreground">{village.score}</p>
-                      <div className="flex items-center gap-1 text-xs">
-                        {village.trend === "up" ? (
-                          <TrendingUp className="h-3 w-3 text-success" />
-                        ) : village.trend === "down" ? (
-                          <TrendingDown className="h-3 w-3 text-destructive" />
-                        ) : (
-                          <span className="text-muted-foreground">-</span>
-                        )}
-                        <span
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="font-semibold text-card-foreground">{village.nama}</h3>
+                        <Badge
+                          variant="secondary"
                           className={
-                            village.trend === "up"
-                              ? "text-success"
-                              : village.trend === "down"
-                                ? "text-destructive"
-                                : "text-muted-foreground"
+                            village.tipe === "Pertanian"
+                              ? "bg-success/20 text-success"
+                              : village.tipe === "Perikanan"
+                                ? "bg-info/20 text-info"
+                                : village.tipe === "Wisata"
+                                  ? "bg-warning/20 text-warning"
+                                  : "bg-chart-2/20 text-chart-2"
                           }
                         >
-                          {village.trend === "up"
-                            ? "Naik"
-                            : village.trend === "down"
-                              ? "Turun"
-                              : "Stabil"}
-                        </span>
+                          {village.tipe}
+                        </Badge>
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        Kabupaten {village.kabupaten}
+                      </p>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {village.strengths.map((strength) => (
+                          <Badge key={strength} variant="outline" className="border-border text-xs">
+                            {strength}
+                          </Badge>
+                        ))}
                       </div>
                     </div>
-                    <Button variant="ghost" size="icon" onClick={() => handleViewVillage(village)}>
-                      <ChevronRight className="h-5 w-5" />
-                    </Button>
+                    <div className="flex items-center gap-3 self-end sm:self-auto">
+                      <div className="text-right">
+                        <p className="text-2xl font-bold text-card-foreground">{village.score}</p>
+                        <div className="flex items-center gap-1 text-xs">
+                          {village.trend === "up" ? (
+                            <TrendingUp className="h-3 w-3 text-success" />
+                          ) : village.trend === "down" ? (
+                            <TrendingDown className="h-3 w-3 text-destructive" />
+                          ) : (
+                            <span className="text-muted-foreground">-</span>
+                          )}
+                          <span
+                            className={
+                              village.trend === "up"
+                                ? "text-success"
+                                : village.trend === "down"
+                                  ? "text-destructive"
+                                  : "text-muted-foreground"
+                            }
+                          >
+                            {village.trend === "up"
+                              ? "Naik"
+                              : village.trend === "down"
+                                ? "Turun"
+                                : "Stabil"}
+                          </span>
+                        </div>
+                      </div>
+                      <Button variant="ghost" size="icon" onClick={() => handleViewVillage(village)}>
+                        <ChevronRight className="h-5 w-5" />
+                      </Button>
+                    </div>
                   </div>
-                </div>
               </CardContent>
             </Card>
           ))}

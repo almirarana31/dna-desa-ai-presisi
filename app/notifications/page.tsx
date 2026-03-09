@@ -85,6 +85,7 @@ export default function NotificationsPage() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [deleteAllDialogOpen, setDeleteAllDialogOpen] = useState(false)
   const [selectedNotification, setSelectedNotification] = useState<Notification | null>(null)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const unreadCount = notifications.filter(n => !n.isRead).length
 
@@ -145,13 +146,13 @@ export default function NotificationsPage() {
   return (
     <div className="flex min-h-screen bg-background">
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Main Content */}
-      <div className="ml-64 flex-1">
-        <Header />
+      <div className="flex-1 lg:ml-64">
+        <Header onMenuClick={() => setSidebarOpen(true)} />
 
-        <main className="p-6">
+        <main className="p-4 sm:p-6">
           {/* Breadcrumb Navigation */}
           <BreadcrumbNav />
 

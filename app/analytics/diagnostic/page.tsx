@@ -219,7 +219,7 @@ export default function DiagnosticEnginePage() {
                         </Badge>
                       )}
                     </div>
-                    <div className="mt-2 grid grid-cols-3 gap-4 text-sm">
+                    <div className="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                       <div>
                         <p className="text-muted-foreground">Penduduk Terdampak</p>
                         <p className="font-semibold text-card-foreground">
@@ -334,7 +334,7 @@ export default function DiagnosticEnginePage() {
 
                     <p className="mt-3 text-sm text-card-foreground">{issue.description}</p>
 
-                    <div className="mt-4 grid grid-cols-3 gap-4 rounded-lg bg-secondary/50 p-3">
+                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 rounded-lg bg-secondary/50 p-3">
                       <div>
                         <p className="text-xs text-muted-foreground">Dampak</p>
                         <p className="mt-1 text-sm font-medium text-card-foreground">{issue.impact}</p>

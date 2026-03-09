@@ -119,7 +119,7 @@ export default function RecommendationEnginePage() {
       </div>
 
       {/* 5 Categories Overview - PowerPoint Slide 10 */}
-      <div className="mb-8 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+      <div className="mb-8 grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         {Object.entries(categoryConfig).map(([key, config]) => {
           const Icon = config.icon
           return (
@@ -211,7 +211,7 @@ export default function RecommendationEnginePage() {
                       <p className="mt-1 text-sm text-card-foreground">{rec.rationale}</p>
                     </div>
 
-                    <div className="mt-4 grid grid-cols-4 gap-4">
+                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                       <div className="rounded-lg bg-background/50 p-3">
                         <p className="text-xs text-muted-foreground">Investasi</p>
                         <p className="mt-1 text-sm font-semibold text-card-foreground">
@@ -291,7 +291,7 @@ export default function RecommendationEnginePage() {
                     <p className="mt-1 text-sm text-muted-foreground">{rec.villageName}</p>
                     <p className="mt-2 text-sm text-card-foreground">{rec.description}</p>
                     
-                    <div className="mt-3 grid grid-cols-3 gap-3 text-sm">
+                    <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
                       <div>
                         <span className="text-muted-foreground">Investasi: </span>
                         <span className="font-semibold">Rp {rec.estimatedCost} juta</span>
@@ -331,7 +331,7 @@ export default function RecommendationEnginePage() {
                     <p className="mt-1 text-sm text-muted-foreground">{rec.villageName}</p>
                     <p className="mt-2 text-sm text-card-foreground">{rec.description}</p>
                     
-                    <div className="mt-3 grid grid-cols-3 gap-3 text-sm">
+                    <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
                       <div>
                         <span className="text-muted-foreground">Investasi: </span>
                         <span className="font-semibold">Rp {rec.estimatedCost} juta</span>
@@ -371,7 +371,7 @@ export default function RecommendationEnginePage() {
                     <p className="mt-1 text-sm text-muted-foreground">{rec.villageName}</p>
                     <p className="mt-2 text-sm text-card-foreground">{rec.description}</p>
                     
-                    <div className="mt-3 grid grid-cols-3 gap-3 text-sm">
+                    <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
                       <div>
                         <span className="text-muted-foreground">Investasi: </span>
                         <span className="font-semibold">Rp {rec.estimatedCost} juta</span>
@@ -411,7 +411,7 @@ export default function RecommendationEnginePage() {
                     <p className="mt-1 text-sm text-muted-foreground">{rec.villageName}</p>
                     <p className="mt-2 text-sm text-card-foreground">{rec.description}</p>
                     
-                    <div className="mt-3 grid grid-cols-3 gap-3 text-sm">
+                    <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
                       <div>
                         <span className="text-muted-foreground">Investasi: </span>
                         <span className="font-semibold">Rp {rec.estimatedCost} juta</span>

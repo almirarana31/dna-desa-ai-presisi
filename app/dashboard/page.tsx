@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Sidebar } from "@/components/dashboard/sidebar"
 import { Header } from "@/components/dashboard/header"
 import { StatsCard } from "@/components/dashboard/stats-card"
@@ -27,16 +28,18 @@ import {
 } from "lucide-react"
 
 export default function DashboardPage() {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   return (
     <div className="flex min-h-screen bg-background">
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Main Content */}
-      <div className="ml-64 flex-1">
-        <Header />
+      <div className="flex-1 lg:ml-64">
+        <Header onMenuClick={() => setSidebarOpen(true)} />
 
-        <main className="p-6">
+        <main className="p-4 sm:p-6">
           {/* Breadcrumb Navigation */}
           <BreadcrumbNav />
 
@@ -86,22 +89,22 @@ export default function DashboardPage() {
 
           {/* Main Tabs */}
           <Tabs defaultValue="overview" className="space-y-6">
-            <TabsList className="bg-secondary">
-              <TabsTrigger value="overview" className="gap-2">
+            <TabsList className="bg-secondary w-full justify-start overflow-x-auto">
+              <TabsTrigger value="overview" className="gap-2 text-xs sm:text-sm">
                 <Activity className="h-4 w-4" />
-                Overview
+                <span className="hidden sm:inline">Overview</span>
               </TabsTrigger>
-              <TabsTrigger value="dna-desa" className="gap-2">
+              <TabsTrigger value="dna-desa" className="gap-2 text-xs sm:text-sm">
                 <Brain className="h-4 w-4" />
-                DNA Desa
+                <span className="hidden sm:inline">DNA Desa</span>
               </TabsTrigger>
-              <TabsTrigger value="analytics" className="gap-2">
+              <TabsTrigger value="analytics" className="gap-2 text-xs sm:text-sm">
                 <BarChart3 className="h-4 w-4" />
-                Analytics
+                <span className="hidden sm:inline">Analytics</span>
               </TabsTrigger>
-              <TabsTrigger value="recommendations" className="gap-2">
+              <TabsTrigger value="recommendations" className="gap-2 text-xs sm:text-sm">
                 <Target className="h-4 w-4" />
-                Rekomendasi
+                <span className="hidden sm:inline">Rekomendasi</span>
               </TabsTrigger>
             </TabsList>
 
@@ -239,14 +242,19 @@ export default function DashboardPage() {
         </main>
 
         {/* Footer */}
-        <footer className="border-t border-border px-6 py-4">
-          <div className="flex items-center justify-between text-sm text-muted-foreground">
-            <p>© 2024 AI Desa Framework - Kementerian Desa, PDT, dan Transmigrasi</p>
+        <footer className="border-t border-border px-4 sm:px-6 py-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm text-muted-foreground">
+            <p>© 2026 AI Desa Framework - Kementerian Desa</p>
             <div className="flex items-center gap-4">
-              <span>Versi 1.0.0</span>
-              <span>•</span>
-              <span>Data terakhir diperbarui: 7 Maret 2026</span>
+              <span>v1.0.0</span>
             </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  )
+}
+       </div>
           </div>
         </footer>
       </div>

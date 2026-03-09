@@ -1,6 +1,6 @@
 "use client"
 
-import { Search, Bell, User, Calendar } from "lucide-react"
+import { Search, Bell, User, Calendar, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
@@ -13,7 +13,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-export function Header() {
+interface HeaderProps {
+  onMenuClick?: () => void
+}
+
+export function Header({ onMenuClick }: HeaderProps) {
   const currentDate = new Date().toLocaleDateString("id-ID", {
     weekday: "long",
     year: "numeric",
@@ -22,23 +26,33 @@ export function Header() {
   })
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-background/95 px-6 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      {/* Search */}
-      <div className="flex items-center gap-4">
-        <div className="relative">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-background/95 px-4 sm:px-6 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      {/* Left side: hamburger + search */}
+      <div className="flex items-center gap-3">
+        {/* Mobile menu button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="lg:hidden"
+          onClick={onMenuClick}
+        >
+          <Menu className="h-5 w-5" />
+        </Button>
+
+        <div className="relative hidden sm:block">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             type="search"
             placeholder="Cari desa, komoditas, atau data..."
-            className="h-9 w-80 bg-secondary pl-9 text-sm"
+            className="h-9 w-48 sm:w-64 md:w-80 bg-secondary pl-9 text-sm"
           />
         </div>
       </div>
 
       {/* Right Side */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
         {/* Date */}
-        <div className="hidden items-center gap-2 text-sm text-muted-foreground md:flex">
+        <div className="hidden items-center gap-2 text-sm text-muted-foreground lg:flex">
           <Calendar className="h-4 w-4" />
           <span>{currentDate}</span>
         </div>
@@ -53,7 +67,7 @@ export function Header() {
               </span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+          <DropdownMenuContent align="end" className="w-72 sm:w-80 max-h-96 overflow-y-auto">
             <DropdownMenuLabel className="text-foreground">Notifikasi</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>

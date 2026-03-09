@@ -25,42 +25,42 @@ export default function LandingPage() {
       title: 'Smart Analysis',
       description: 'Get insights about village development using smart technology',
       color: 'text-emerald-600',
-      bg: 'bg-emerald-100 dark:bg-emerald-900/30',
+      bg: 'bg-emerald-100',
     },
     {
       icon: Map,
       title: 'Interactive Maps',
       description: 'View village data on easy-to-read maps with population and economy info',
       color: 'text-blue-600',
-      bg: 'bg-blue-100 dark:bg-blue-900/30',
+      bg: 'bg-blue-100',
     },
     {
       icon: BarChart3,
       title: 'Live Dashboards',
       description: 'See up-to-date charts and graphs to make quick decisions',
       color: 'text-teal-600',
-      bg: 'bg-teal-100 dark:bg-teal-900/30',
+      bg: 'bg-teal-100',
     },
     {
       icon: Target,
       title: 'Priority Planning',
       description: 'Find which villages need help first and plan your programs',
       color: 'text-orange-600',
-      bg: 'bg-orange-100 dark:bg-orange-900/30',
+      bg: 'bg-orange-100',
     },
     {
       icon: TrendingUp,
       title: 'Growth Forecasts',
       description: 'Predict how villages will grow and develop in the future',
       color: 'text-cyan-600',
-      bg: 'bg-cyan-100 dark:bg-cyan-900/30',
+      bg: 'bg-cyan-100',
     },
     {
       icon: Shield,
       title: 'Safe & Secure',
       description: 'Government-level security to protect all your data',
       color: 'text-green-600',
-      bg: 'bg-green-100 dark:bg-green-900/30',
+      bg: 'bg-green-100',
     },
   ]
 
@@ -72,11 +72,11 @@ export default function LandingPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50">
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="text-center max-w-4xl mx-auto space-y-8">
-          <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 px-4 py-1">
+          <Badge className="bg-emerald-100 text-emerald-700 px-4 py-1">
             <Brain className="h-3 w-3 mr-1" />
             Smart Village Analytics
           </Badge>
@@ -123,7 +123,7 @@ export default function LandingPage() {
       </div>
 
       {/* Features Section */}
-      <div className="bg-white dark:bg-slate-900 py-20">
+      <div className="bg-white py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Complete Village Information</h2>
@@ -166,7 +166,7 @@ export default function LandingPage() {
                 'See how well your programs are working',
               ].map((benefit, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <div className="p-1 bg-emerald-100 dark:bg-emerald-900/30 rounded-full mt-0.5">
+                  <div className="p-1 bg-emerald-100 rounded-full mt-0.5">
                     <CheckCircle2 className="h-4 w-4 text-emerald-600" />
                   </div>
                   <p className="text-sm">{benefit}</p>
@@ -183,7 +183,7 @@ export default function LandingPage() {
                 'Track how your community is improving over time',
               ].map((benefit, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <div className="p-1 bg-blue-100 dark:bg-blue-900/30 rounded-full mt-0.5">
+                  <div className="p-1 bg-blue-100 rounded-full mt-0.5">
                     <CheckCircle2 className="h-4 w-4 text-blue-600" />
                   </div>
                   <p className="text-sm">{benefit}</p>
@@ -218,6 +218,39 @@ export default function LandingPage() {
           </p>
         </div>
       </div>
+    </div>
+  )
+}
+026 DNA Desa AI Presisi. Smart Analytics for Village Development.
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+       </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+    </div>
+  )
+}
+ )
+}
+
+    </div>
+  )
+}
+}
+
     </div>
   )
 }

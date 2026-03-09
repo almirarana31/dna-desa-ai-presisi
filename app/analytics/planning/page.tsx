@@ -126,7 +126,7 @@ export default function PlanningEnginePage() {
                           <p className="mt-1 text-sm text-muted-foreground">{plan.villageName}</p>
                           <p className="mt-2 text-sm text-card-foreground">{plan.description}</p>
                           
-                          <div className="mt-3 grid grid-cols-3 gap-3 text-sm">
+                          <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
                             <div>
                               <span className="text-muted-foreground">Investasi: </span>
                               <span className="font-semibold">Rp {plan.estimatedCost} juta</span>
@@ -141,7 +141,7 @@ export default function PlanningEnginePage() {
                             </div>
                           </div>
 
-                          <div className="mt-3 flex gap-2">
+                          <div className="mt-3 flex flex-wrap gap-2">
                             <Button size="sm" onClick={() => handleSetujui(plan)}>
                               <CheckCircle2 className="mr-2 h-4 w-4" />
                               Setujui
@@ -181,7 +181,7 @@ export default function PlanningEnginePage() {
                           <p className="mt-1 text-sm text-muted-foreground">{plan.villageName}</p>
                           <p className="mt-2 text-sm text-card-foreground">{plan.description}</p>
                           
-                          <div className="mt-3 grid grid-cols-3 gap-3 text-sm">
+                          <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
                             <div>
                               <span className="text-muted-foreground">Investasi: </span>
                               <span className="font-semibold">Rp {plan.estimatedCost} juta</span>
@@ -230,7 +230,7 @@ export default function PlanningEnginePage() {
                           <p className="mt-1 text-sm text-muted-foreground">{plan.villageName}</p>
                           <p className="mt-2 text-sm text-card-foreground">{plan.description}</p>
                           
-                          <div className="mt-3 grid grid-cols-3 gap-3 text-sm">
+                          <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
                             <div>
                               <span className="text-muted-foreground">Investasi: </span>
                               <span className="font-semibold">Rp {plan.estimatedCost} juta</span>
