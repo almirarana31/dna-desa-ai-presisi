@@ -44,7 +44,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         {/* Back to Landing */}
         <Link href="/landing">
@@ -56,7 +56,7 @@ export default function LoginPage() {
 
         {/* Logo & Title */}
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500 to-blue-500 mb-4">
             <Brain className="h-8 w-8 text-white" />
           </div>
           <h1 className="text-3xl font-bold">DNA Desa AI Presisi</h1>
@@ -108,14 +108,14 @@ export default function LoginPage() {
                   <input type="checkbox" className="rounded" />
                   <span className="text-muted-foreground">Remember me</span>
                 </label>
-                <Link href="#" className="text-purple-600 hover:text-purple-700 font-medium">
+                <Link href="#" className="text-emerald-600 hover:text-emerald-700 font-medium">
                   Forgot password?
                 </Link>
               </div>
 
               <Button 
                 type="submit" 
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
                 disabled={isLoading}
               >
                 {isLoading ? 'Signing in...' : 'Sign In'}
@@ -125,10 +125,10 @@ export default function LoginPage() {
         </Card>
 
         {/* Demo Credentials */}
-        <Card className="border-2 border-purple-200 dark:border-purple-900 bg-purple-50 dark:bg-purple-950/20">
+        <Card className="border-2 border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/20">
           <CardContent className="p-4">
             <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
-              <Shield className="h-4 w-4 text-purple-600" />
+              <Shield className="h-4 w-4 text-blue-600" />
               Demo Access
             </h3>
             <div className="space-y-1 text-xs text-muted-foreground">
@@ -181,10 +181,16 @@ export default function LoginPage() {
         <div className="text-center text-sm text-muted-foreground">
           <p>
             Need access?{' '}
-            <Link href="#" className="text-purple-600 hover:text-purple-700 font-medium">
+            <Link href="#" className="text-emerald-600 hover:text-emerald-700 font-medium">
               Contact your regional administrator
             </Link>
           </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+   </p>
         </div>
       </div>
     </div>

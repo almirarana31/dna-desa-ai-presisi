@@ -40,7 +40,7 @@ const navigation: { section: string; items: NavItem[] }[] = [
   {
     section: "Overview",
     items: [
-      { label: "Dashboard", icon: Home, href: "/" },
+      { label: "Dashboard", icon: Home, href: "/dashboard" },
       { label: "Notifikasi", icon: Bell, href: "/notifications", badge: "3" },
     ],
   },

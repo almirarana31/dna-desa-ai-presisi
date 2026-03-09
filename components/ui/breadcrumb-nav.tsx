@@ -16,7 +16,7 @@ export function BreadcrumbNav() {
   // Generate breadcrumbs from pathname
   const generateBreadcrumbs = (): BreadcrumbItem[] => {
     const paths = pathname.split("/").filter(Boolean)
-    const breadcrumbs: BreadcrumbItem[] = [{ label: "Dashboard", href: "/" }]
+    const breadcrumbs: BreadcrumbItem[] = [{ label: "Dashboard", href: "/dashboard" }]
 
     // Map of path segments to readable labels
     const labelMap: Record<string, string> = {
@@ -55,8 +55,8 @@ export function BreadcrumbNav() {
 
   const breadcrumbs = generateBreadcrumbs()
 
-  // Don't show breadcrumbs on homepage
-  if (pathname === "/") {
+  // Don't show breadcrumbs on dashboard homepage
+  if (pathname === "/" || pathname === "/dashboard") {
     return null
   }
 

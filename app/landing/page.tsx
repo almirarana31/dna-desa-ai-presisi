@@ -10,7 +10,6 @@ import {
   Map,
   TrendingUp,
   Shield,
-  Zap,
   ArrowRight,
   CheckCircle2,
   Users,
@@ -25,8 +24,8 @@ export default function LandingPage() {
       icon: Brain,
       title: 'Smart Analysis',
       description: 'Get insights about village development using smart technology',
-      color: 'text-purple-600',
-      bg: 'bg-purple-100 dark:bg-purple-900/30',
+      color: 'text-emerald-600',
+      bg: 'bg-emerald-100 dark:bg-emerald-900/30',
     },
     {
       icon: Map,
@@ -39,8 +38,8 @@ export default function LandingPage() {
       icon: BarChart3,
       title: 'Live Dashboards',
       description: 'See up-to-date charts and graphs to make quick decisions',
-      color: 'text-emerald-600',
-      bg: 'bg-emerald-100 dark:bg-emerald-900/30',
+      color: 'text-teal-600',
+      bg: 'bg-teal-100 dark:bg-teal-900/30',
     },
     {
       icon: Target,
@@ -53,15 +52,15 @@ export default function LandingPage() {
       icon: TrendingUp,
       title: 'Growth Forecasts',
       description: 'Predict how villages will grow and develop in the future',
-      color: 'text-pink-600',
-      bg: 'bg-pink-100 dark:bg-pink-900/30',
+      color: 'text-cyan-600',
+      bg: 'bg-cyan-100 dark:bg-cyan-900/30',
     },
     {
       icon: Shield,
       title: 'Safe & Secure',
       description: 'Government-level security to protect all your data',
-      color: 'text-cyan-600',
-      bg: 'bg-cyan-100 dark:bg-cyan-900/30',
+      color: 'text-green-600',
+      bg: 'bg-green-100 dark:bg-green-900/30',
     },
   ]
 
@@ -73,17 +72,17 @@ export default function LandingPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="text-center max-w-4xl mx-auto space-y-8">
-          <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400 px-4 py-1">
+          <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 px-4 py-1">
             <Brain className="h-3 w-3 mr-1" />
-            AI-Powered Village Analytics
+            Smart Village Analytics
           </Badge>
           
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
               DNA Desa AI Presisi
             </span>
           </h1>
@@ -95,7 +94,7 @@ export default function LandingPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/login">
-              <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white px-8">
                 Access Platform
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -114,7 +113,7 @@ export default function LandingPage() {
           {stats.map((stat, index) => (
             <Card key={index} className="border-2 hover:shadow-lg transition-shadow">
               <CardContent className="p-6 text-center">
-                <stat.icon className="h-8 w-8 mx-auto mb-2 text-purple-600" />
+                <stat.icon className="h-8 w-8 mx-auto mb-2 text-emerald-600" />
                 <p className="text-3xl font-bold">{stat.value}</p>
                 <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
               </CardContent>
@@ -167,8 +166,8 @@ export default function LandingPage() {
                 'See how well your programs are working',
               ].map((benefit, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <div className="p-1 bg-purple-100 dark:bg-purple-900/30 rounded-full mt-0.5">
-                    <CheckCircle2 className="h-4 w-4 text-purple-600" />
+                  <div className="p-1 bg-emerald-100 dark:bg-emerald-900/30 rounded-full mt-0.5">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-600" />
                   </div>
                   <p className="text-sm">{benefit}</p>
                 </div>
@@ -184,8 +183,8 @@ export default function LandingPage() {
                 'Track how your community is improving over time',
               ].map((benefit, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <div className="p-1 bg-pink-100 dark:bg-pink-900/30 rounded-full mt-0.5">
-                    <CheckCircle2 className="h-4 w-4 text-pink-600" />
+                  <div className="p-1 bg-blue-100 dark:bg-blue-900/30 rounded-full mt-0.5">
+                    <CheckCircle2 className="h-4 w-4 text-blue-600" />
                   </div>
                   <p className="text-sm">{benefit}</p>
                 </div>
@@ -196,10 +195,10 @@ export default function LandingPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-r from-purple-600 to-pink-600 py-16">
+      <div className="bg-gradient-to-r from-emerald-600 to-blue-600 py-16">
         <div className="container mx-auto px-4 text-center text-white">
           <h2 className="text-3xl font-bold mb-4">Improve Village Development with Smart Tools</h2>
-          <p className="text-purple-50 mb-8 max-w-2xl mx-auto">
+          <p className="text-emerald-50 mb-8 max-w-2xl mx-auto">
             Join government agencies using DNA Desa AI to plan better village development
           </p>
           <Link href="/login">
@@ -215,8 +214,14 @@ export default function LandingPage() {
       <div className="bg-slate-900 text-white py-8">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm text-slate-400">
-            © 2026 DNA Desa AI Presisi. Precision Analytics for Village Development.
+            © 2026 DNA Desa AI Presisi. Smart Analytics for Village Development.
           </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+      </p>
         </div>
       </div>
     </div>
