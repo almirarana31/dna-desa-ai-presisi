@@ -146,15 +146,9 @@ export function VillageTypeChart() {
               <Cell key={`cell-${index}`} fill={entry.color} />
             ))}
           </Pie>
-          <Tooltip
-            contentStyle={{
-              backgroundColor: "hsl(260, 10%, 14%)",
-              border: "1px solid hsl(260, 10%, 25%)",
-              borderRadius: "8px",
-            }}
-          />
+          <Tooltip content={<CustomTooltip />} />
           <Legend
-            formatter={(value) => <span style={{ color: "hsl(0, 0%, 98%)" }}>{value}</span>}
+            formatter={(value) => <span className="text-foreground">{value}</span>}
           />
         </PieChart>
       </ResponsiveContainer>
