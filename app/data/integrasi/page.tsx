@@ -259,22 +259,22 @@ export default function IntegrasiPage() {
                   dataKey="waktu"
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                  tick={{ fill: "#64748b", fontSize: 11 }}
                 />
                 <YAxis
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                  tick={{ fill: "#64748b", fontSize: 11 }}
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "var(--color-card)",
-                    border: "1px solid var(--color-border)",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid #e2e8f0",
                     borderRadius: "8px",
                   }}
                 />
-                <Bar dataKey="success" fill="var(--color-success)" radius={[4, 4, 0, 0]} name="Success" />
-                <Bar dataKey="failed" fill="var(--color-destructive)" radius={[4, 4, 0, 0]} name="Failed" />
+                <Bar dataKey="success" fill="#10b981" radius={[4, 4, 0, 0]} name="Success" />
+                <Bar dataKey="failed" fill="#ef4444" radius={[4, 4, 0, 0]} name="Failed" />
               </BarChart>
             </ResponsiveContainer>
             <div className="mt-4 flex items-center justify-center gap-6">

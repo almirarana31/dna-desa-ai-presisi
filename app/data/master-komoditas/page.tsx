@@ -198,34 +198,34 @@ export default function MasterKomoditasPage() {
             <AreaChart data={productionTrend}>
               <defs>
                 <linearGradient id="colorPadi" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--color-success)" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="var(--color-success)" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="colorJagung" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--color-warning)" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="var(--color-warning)" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="colorSawit" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--color-info)" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="var(--color-info)" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <XAxis
                 dataKey="bulan"
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "var(--color-muted-foreground)", fontSize: 12 }}
+                tick={{ fill: "#64748b", fontSize: 12 }}
               />
               <YAxis
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "var(--color-muted-foreground)", fontSize: 12 }}
+                tick={{ fill: "#64748b", fontSize: 12 }}
                 tickFormatter={(value) => `${value} Jt`}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "var(--color-card)",
-                  border: "1px solid var(--color-border)",
+                  backgroundColor: "#ffffff",
+                  border: "1px solid #e2e8f0",
                   borderRadius: "8px",
                 }}
                 formatter={(value: number) => [`${value.toFixed(1)} Juta Ton`, ""]}
@@ -233,7 +233,7 @@ export default function MasterKomoditasPage() {
               <Area
                 type="monotone"
                 dataKey="padi"
-                stroke="var(--color-success)"
+                stroke="#10b981"
                 fill="url(#colorPadi)"
                 strokeWidth={2}
                 name="Padi"
@@ -241,7 +241,7 @@ export default function MasterKomoditasPage() {
               <Area
                 type="monotone"
                 dataKey="jagung"
-                stroke="var(--color-warning)"
+                stroke="#f59e0b"
                 fill="url(#colorJagung)"
                 strokeWidth={2}
                 name="Jagung"
@@ -249,7 +249,7 @@ export default function MasterKomoditasPage() {
               <Area
                 type="monotone"
                 dataKey="sawit"
-                stroke="var(--color-info)"
+                stroke="#3b82f6"
                 fill="url(#colorSawit)"
                 strokeWidth={2}
                 name="Kelapa Sawit"

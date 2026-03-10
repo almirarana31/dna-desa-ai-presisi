@@ -69,17 +69,17 @@ const categoryStats = Object.entries(issuesByCategory).map(([category, issues]) 
 
 // Severity distribution
 const severityDistribution = [
-  { name: "Critical", value: diagnosticIssues.filter(i => i.severity === "critical").length, color: "var(--color-destructive)" },
-  { name: "High", value: diagnosticIssues.filter(i => i.severity === "high").length, color: "var(--color-warning)" },
-  { name: "Medium", value: diagnosticIssues.filter(i => i.severity === "medium").length, color: "var(--color-info)" },
-  { name: "Low", value: diagnosticIssues.filter(i => i.severity === "low").length, color: "var(--color-success)" },
+  { name: "Critical", value: diagnosticIssues.filter(i => i.severity === "critical").length, color: "#ef4444" },
+  { name: "High", value: diagnosticIssues.filter(i => i.severity === "high").length, color: "#f59e0b" },
+  { name: "Medium", value: diagnosticIssues.filter(i => i.severity === "medium").length, color: "#3b82f6" },
+  { name: "Low", value: diagnosticIssues.filter(i => i.severity === "low").length, color: "#10b981" },
 ]
 
 // Status distribution
 const statusDistribution = [
-  { name: "Open", value: diagnosticIssues.filter(i => i.status === "open").length, color: "var(--color-destructive)" },
-  { name: "In Progress", value: diagnosticIssues.filter(i => i.status === "in_progress").length, color: "var(--color-warning)" },
-  { name: "Resolved", value: diagnosticIssues.filter(i => i.status === "resolved").length, color: "var(--color-success)" },
+  { name: "Open", value: diagnosticIssues.filter(i => i.status === "open").length, color: "#ef4444" },
+  { name: "In Progress", value: diagnosticIssues.filter(i => i.status === "in_progress").length, color: "#f59e0b" },
+  { name: "Resolved", value: diagnosticIssues.filter(i => i.status === "resolved").length, color: "#10b981" },
 ]
 
 export default function DiagnosticEnginePage() {
@@ -181,8 +181,8 @@ export default function DiagnosticEnginePage() {
           <CardContent>
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={statusDistribution}>
-                <XAxis dataKey="name" tick={{ fill: "var(--color-muted-foreground)" }} />
-                <YAxis tick={{ fill: "var(--color-muted-foreground)" }} />
+                <XAxis dataKey="name" tick={{ fill: "#64748b" }} />
+                <YAxis tick={{ fill: "#64748b" }} />
                 <Tooltip />
                 <Bar dataKey="value" radius={[8, 8, 0, 0]}>
                   {statusDistribution.map((entry, index) => (
@@ -538,6 +538,13 @@ export default function DiagnosticEnginePage() {
                 Buat Rencana Aksi
               </Button>
             </div>
+          </div>
+        )}
+      </DetailDialog>
+    </DashboardLayout>
+  )
+}
+          </div>
           </div>
         )}
       </DetailDialog>

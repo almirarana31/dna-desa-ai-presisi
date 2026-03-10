@@ -187,42 +187,42 @@ export default function SensorIoTPage() {
                 dataKey="waktu"
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "var(--color-muted-foreground)", fontSize: 12 }}
+                tick={{ fill: "#64748b", fontSize: 12 }}
               />
               <YAxis
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "var(--color-muted-foreground)", fontSize: 12 }}
+                tick={{ fill: "#64748b", fontSize: 12 }}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "var(--color-card)",
-                  border: "1px solid var(--color-border)",
+                  backgroundColor: "#ffffff",
+                  border: "1px solid #e2e8f0",
                   borderRadius: "8px",
                 }}
               />
               <Line
                 type="monotone"
                 dataKey="suhu"
-                stroke="var(--color-destructive)"
+                stroke="#ef4444"
                 strokeWidth={2}
-                dot={{ fill: "var(--color-destructive)", r: 4 }}
+                dot={{ fill: "#ef4444", r: 4 }}
                 name="Suhu (°C)"
               />
               <Line
                 type="monotone"
                 dataKey="kelembaban"
-                stroke="var(--color-info)"
+                stroke="#3b82f6"
                 strokeWidth={2}
-                dot={{ fill: "var(--color-info)", r: 4 }}
+                dot={{ fill: "#3b82f6", r: 4 }}
                 name="Kelembaban (%)"
               />
               <Line
                 type="monotone"
                 dataKey="curahHujan"
-                stroke="var(--color-primary)"
+                stroke="#10b981"
                 strokeWidth={2}
-                dot={{ fill: "var(--color-primary)", r: 4 }}
+                dot={{ fill: "#10b981", r: 4 }}
                 name="Curah Hujan (mm)"
               />
             </LineChart>

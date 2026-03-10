@@ -203,21 +203,21 @@ export default function DNADesaPage() {
             <div className="flex items-center gap-8">
               <ResponsiveContainer width="60%" height={300}>
                 <RadarChart data={dnaMetrics}>
-                  <PolarGrid stroke="var(--color-border)" />
+                  <PolarGrid stroke="#e2e8f0" />
                   <PolarAngleAxis
                     dataKey="subject"
-                    tick={{ fill: "var(--color-muted-foreground)", fontSize: 12 }}
+                    tick={{ fill: "#64748b", fontSize: 12 }}
                   />
                   <PolarRadiusAxis
                     angle={30}
                     domain={[0, 100]}
-                    tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }}
+                    tick={{ fill: "#64748b", fontSize: 10 }}
                   />
                   <Radar
                     name="Score"
                     dataKey="A"
-                    stroke="var(--color-primary)"
-                    fill="var(--color-primary)"
+                    stroke="#10b981"
+                    fill="#10b981"
                     fillOpacity={0.3}
                     strokeWidth={2}
                   />

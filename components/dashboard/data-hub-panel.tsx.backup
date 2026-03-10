@@ -147,9 +147,9 @@ export function DataHubPanel() {
               <div className="flex-1">
                 <div className="flex items-center justify-between">
                   <h4 className="font-medium text-card-foreground group-hover:text-primary">{source.name}</h4>
-                  <div className="flex items-center gap-1 text-xs">
-                    <StatusIcon className={cn("h-3 w-3", statusConfig[source.status].color, statusConfig[source.status].iconClass)} />
-                    <span className={statusConfig[source.status].color}>{statusConfig[source.status].label}</span>
+                  <div className={cn("flex items-center gap-1 text-xs", statusConfig[source.status].color)}>
+                    <StatusIcon className="h-3 w-3" />
+                    {statusConfig[source.status].label}
                   </div>
                 </div>
                 <div className="mt-1 flex items-center gap-4 text-sm text-muted-foreground">

@@ -417,37 +417,37 @@ export default function MonitoringPage() {
             <AreaChart data={performanceTrend}>
               <defs>
                 <linearGradient id="colorTarget" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--color-primary)" stopOpacity={0.1} />
-                  <stop offset="95%" stopColor="var(--color-primary)" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.1} />
+                  <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="colorActual" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--color-success)" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="var(--color-success)" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <XAxis
                 dataKey="bulan"
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "var(--color-muted-foreground)", fontSize: 12 }}
+                tick={{ fill: "#64748b", fontSize: 12 }}
               />
               <YAxis
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "var(--color-muted-foreground)", fontSize: 12 }}
+                tick={{ fill: "#64748b", fontSize: 12 }}
                 domain={[60, 90]}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "var(--color-card)",
-                  border: "1px solid var(--color-border)",
+                  backgroundColor: "#ffffff",
+                  border: "1px solid #e2e8f0",
                   borderRadius: "8px",
                 }}
               />
               <Line
                 type="monotone"
                 dataKey="baseline"
-                stroke="var(--color-muted-foreground)"
+                stroke="#94a3b8"
                 strokeWidth={1}
                 strokeDasharray="5 5"
                 dot={false}
@@ -456,7 +456,7 @@ export default function MonitoringPage() {
               <Area
                 type="monotone"
                 dataKey="target"
-                stroke="var(--color-primary)"
+                stroke="#10b981"
                 fill="url(#colorTarget)"
                 strokeWidth={2}
                 name="Target"
@@ -464,7 +464,7 @@ export default function MonitoringPage() {
               <Area
                 type="monotone"
                 dataKey="actual"
-                stroke="var(--color-success)"
+                stroke="#10b981"
                 fill="url(#colorActual)"
                 strokeWidth={2}
                 name="Realisasi"

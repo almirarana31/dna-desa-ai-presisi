@@ -210,12 +210,12 @@ export default function MasterPendudukPage() {
           <CardContent>
             <ResponsiveContainer width="100%" height={180}>
               <BarChart data={ageData}>
-                <XAxis dataKey="range" axisLine={false} tickLine={false} tick={{ fill: "var(--color-muted-foreground)", fontSize: 12 }} />
+                <XAxis dataKey="range" axisLine={false} tickLine={false} tick={{ fill: "#64748b", fontSize: 12 }} />
                 <YAxis hide />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "var(--color-card)",
-                    border: "1px solid var(--color-border)",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid #e2e8f0",
                     borderRadius: "8px",
                   }}
                   formatter={(value: number) => [
@@ -223,7 +223,7 @@ export default function MasterPendudukPage() {
                     "Penduduk",
                   ]}
                 />
-                <Bar dataKey="jumlah" fill="var(--color-primary)" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="jumlah" fill="#10b981" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
