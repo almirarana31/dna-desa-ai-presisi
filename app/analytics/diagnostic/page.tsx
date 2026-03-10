@@ -544,10 +544,3 @@ export default function DiagnosticEnginePage() {
     </DashboardLayout>
   )
 }
-          </div>
-          </div>
-        )}
-      </DetailDialog>
-    </DashboardLayout>
-  )
-}
